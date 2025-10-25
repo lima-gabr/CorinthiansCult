@@ -1,0 +1,132 @@
+/* ===================================================================
+ * auth.js - Lógica de Autenticação (RF2)
+ * =================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const forgotForm = document.getElementById('forgot-form');
+
+    const loginError = document.getElementById('login-error');
+    const registerError = document.getElementById('register-error');
+    
+    // Links de alternância
+    document.getElementById('show-register').addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        forgotForm.style.display = 'none';
+        registerForm.style.display = 'block';
+    });
+    
+    const showLogin = (e) => {
+        if(e) e.preventDefault();
+        loginForm.style.display = 'block';
+        forgotForm.style.display = 'none';
+        registerForm.style.display = 'none';
+    };
+    document.getElementById('show-login').addEventListener('click', showLogin);
+    document.getElementById('show-login-from-forgot').addEventListener('click', showLogin);
+
+    document.getElementById('show-forgot').addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        forgotForm.style.display = 'block';
+        registerForm.style.display = 'none';
+    });
+    
+    // --- Lógica de Login (RF2.1) ---
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        loginError.style.display = 'none';
+        
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        
+        const result = api.login(email, password);
+        
+        if (result.success) {
+            // RNF3 - Mensagem clara
+            alert('Login realizado com sucesso!');
+            
+            // --- INÍCIO DA CORREÇÃO DE REDIRECIONAMENTO ---
+            
+            // Verifica se há um 'redirect' na URL (ex: veio de /event.html)
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectFromUrl = urlParams.get('redirect');
+            
+            let destinationUrl;
+
+            // 1. Se veio de uma página específica, obedece essa página
+            if (redirectFromUrl) {
+                destinationUrl = redirectFromUrl;
+            } 
+            // 2. Se não, verifica se é admin para mandar ao /admin/
+            else if (result.user.role === 'admin') {
+                destinationUrl = '/admin/'; // Página base do Admin
+            } 
+            // 3. Se não, é cliente comum, manda ao dashboard
+            else {
+                destinationUrl = '/dashboard.html'; // Página base do Cliente
+            }
+            
+            window.location.href = destinationUrl;
+            
+            // --- FIM DA CORREÇÃO ---
+
+        } else {
+            loginError.textContent = result.message;
+            loginError.style.display = 'block';
+        }
+    });
+
+    // --- Lógica de Cadastro (RF2.3) ---
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        registerError.style.display = 'none';
+        
+        const name = document.getElementById('reg-name').value;
+        const email = document.getElementById('reg-email').value;
+        const password = document.getElementById('reg-password').value;
+        const passwordConfirm = document.getElementById('reg-password-confirm').value;
+        
+        // RNF3 - Validação de formulário no cliente
+        if (password !== passwordConfirm) {
+            registerError.textContent = 'As senhas não coincidem.';
+            registerError.style.display = 'block';
+            return;
+        }
+        if (password.length < 6) {
+             registerError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+             registerError.style.display = 'block';
+             return;
+        }
+        
+        const result = api.register(name, email, password);
+        
+        if (result.success) {
+            alert('Cadastro realizado com sucesso! Você já está logado.');
+            // Após cadastrar, o usuário é sempre um 'cliente',
+            // então redireciona para o dashboard ou página de origem.
+            const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || '/dashboard.html';
+            window.location.href = redirectUrl;
+        } else {
+            registerError.textContent = result.message;
+            registerError.style.display = 'block';
+        }
+    });
+    
+    // --- Lógica "Esqueci a Senha" (RF2.2 Simulado) ---
+    forgotForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('forgot-error').style.display = 'none';
+        const successMsg = document.getElementById('forgot-success');
+        
+        const email = document.getElementById('forgot-email').value;
+        console.log(`[SIMULAÇÃO] Solicitação de redefinição de senha para: ${email}`);
+        
+        successMsg.textContent = 'Se este e-mail existir, instruções (simuladas) foram enviadas.';
+        successMsg.style.display = 'block';
+        forgotForm.reset();
+    });
+    
+});

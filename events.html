@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Corinthians Cult</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+</head>
+
+<body>
+    <header class="main-header" role="banner">
+        <div class="container">
+            <a href="./index.html" class="logo"> <img src="./assets/images/corinthians.png" alt="Logo Corinthians Cult">
+            </a>
+            <div class="header-controls">
+                <div class="location-selector">
+                    <label for="state-select">Estado:</label>
+                    <select id="state-select" name="state">
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                    </select>
+                    <label for="city-select">Cidade:</label>
+                    <select id="city-select" name="city">
+                        <option value="SaoPaulo">São Paulo</option>
+                        <option value="Campinas">Campinas</option>
+                    </select>
+                </div>
+                <form class="search-bar" id="search-form" role="search">
+                    <label for="search-input">Buscar eventos</label>
+                    <input type="search" id="search-input" name="q" placeholder="Buscar por título, artista...">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+                <nav class="auth-nav" id="auth-nav-links">
+                    <a href="./login.html" class="btn btn-secondary" id="auth-login-btn">Login / Cadastro</a>
+                </nav>
+            </div>
+            <nav class="main-nav" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="./events.html?category=Todos">Todos</a></li>
+                    <li><a href="./events.html?category=Filmes">Filmes</a></li>
+                    <li><a href="./events.html?category=Shows">Shows</a></li>
+                    <li><a href="./events.html?category=Palestras">Palestras</a></li>
+                    <li><a href="./events.html?category=Peças">Peças</a></li>
+                    <li><a href="./events.html?category=Exposições">Exposições</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Vitrine de Eventos</h1>
+
+            <aside class="filters-bar"
+                style="background: #fff; padding: 1rem; margin-bottom: 1.5rem; border-radius: 5px;">
+                <form id="filters-form" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="filter-category">Categoria</label>
+                        <select id="filter-category" name="category">
+                            <option value="Todos">Todos</option>
+                            <option value="Filmes">Filmes</option>
+                            <option value="Shows">Shows</option>
+                            <option value="Palestras">Palestras</option>
+                            <option value="Peças">Peças</option>
+                            <option value="Exposições">Exposições</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-location">Localização (Cidade/Endereço)</label>
+                        <input type="text" id="filter-location" name="location" placeholder="Ex: São Paulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-sort">Ordenar por</label>
+                        <select id="filter-sort" name="sortBy">
+                            <option value="popularity">Popularidade</option>
+                            <option value="date">Data</option>
+                            <option value="price">Preço</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-end;">Filtrar</button>
+                </form>
+            </aside>
+
+            <section class="event-list" aria-live="polite">
+                <div class="event-grid" id="events-grid-container">
+                    <p>Carregando eventos...</p>
+                </div>
+            </section>
+
+            <nav class="pagination" aria-label="Paginação" style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-secondary">&laquo; Anterior</button>
+                <span style="margin: 0 1rem;">Página 1 de 1</span>
+                <button class="btn btn-secondary">Próxima &raquo;</button>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer class="main-footer" role="contentinfo">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Missão</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Políticas (RF7)</h4>
+                <ul>
+                    <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a>
+                    </li>
+                    <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a>
+                    </li>
+                    <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
+                    <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Ajuda (RF7.2)</h4>
+                <ul>
+                    <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
+                    <li><a href="#">Central de Atendimento</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Formas de Pagamento</h4>
+                <div class="payment-icons">
+                    <span>[Visa]</span>
+                    <span>[Master]</span>
+                    <span>[Pix]</span>
+                </div>
+
+                <h4 style="margin-top: 1rem;">Redes Sociais</h4>
+                <div class="social-icons">
+                    <span>[Face]</span>
+                    <span>[Insta]</span>
+                    <span>[X]</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
+        </div>
+
+        <div id="privacy-policy-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
+                <h2>Política de Privacidade</h2>
+                <p>Texto completo da política de privacidade...</p>
+            </div>
+        </div>
+
+        <div id="refund-policy-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
+                <h2>Política de Reembolso</h2>
+                <p>Texto completo da política de reembolso...</p>
+            </div>
+        </div>
+
+        <div id="cookies-policy-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
+                <h2>Política de Cookies</h2>
+                <p>Texto completo da política de cookies. (RF1.6)</p>
+            </div>
+        </div>
+
+        <div id="terms-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="terms-modal">&times;</span>
+                <h2>Termos de Uso</h2>
+                <p>Texto completo dos termos de uso...</p>
+            </div>
+        </div>
+
+        <div id="faq-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="faq-modal">&times;</span>
+                <h2>FAQ / Ajuda (RF7.2)</h2>
+                <p>Perguntas e respostas frequentes...</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/api.js"></script>
+    <script src="./assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('events-grid-container');
+            const filterForm = document.getElementById('filters-form');
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // Helper para renderizar card
+            const createEventCard = (event) => {
+                let statusClass = '';
+                if (event.status === 'Disponível') statusClass = 'disponivel';
+                else if (event.status === 'Esgotado') statusClass = 'esgotado';
+                else if (event.status === 'Em breve') statusClass = 'em-breve';
+
+                return `
+                    <article class="event-card">
+                        <a href="/event.html?id=${event.id}" class="event-card-link">
+                            <div class="event-card-image">
+                                <img src="${event.imagem_capa}" alt="Capa do evento ${event.title}">
+                                <span class="event-status-tag ${statusClass}">${event.status}</span>
+                            </div>
+                            <div class="event-card-content">
+                                <h3>${event.title}</h3>
+                                <p>${new Date(event.date).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })} | ${event.local_nome}</p>
+                            </div>
+                        </a>
+                        <div class="event-card-footer">
+                            <span class="event-price"><span>A partir de</span> R$ ${event.price_meia.toFixed(2)}</span>
+                            <a href="/event.html?id=${event.id}" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </article>
+                `;
+            };
+
+            // Função principal de renderização (RF4)
+            const renderEvents = () => {
+                const formData = new FormData(filterForm);
+                const filters = {
+                    search: urlParams.get('search') || '',
+                    category: formData.get('category') || urlParams.get('category') || 'Todos',
+                    location: formData.get('location') || '',
+                    sortBy: formData.get('sortBy') || 'popularity'
+                };
+
+                // Atualiza UI dos filtros com base na URL (se vier de lá)
+                if (urlParams.get('search')) {
+                    document.getElementById('search-input').value = urlParams.get('search');
+                }
+                if (urlParams.get('category')) {
+                    document.getElementById('filter-category').value = urlParams.get('category');
+                }
+
+                try {
+                    const events = api.getEvents(filters);
+
+                    if (events.length === 0) {
+                        grid.innerHTML = '<p>Nenhum evento encontrado com esses filtros.</p>';
+                        return;
+                    }
+
+                    grid.innerHTML = events.map(createEventCard).join('');
+
+                    // Lógica de paginação (RF4.3) - Simples (mostra todos)
+                    // Para paginação real, 'api.getEvents' precisaria aceitar (page, limit)
+
+                } catch (e) {
+                    grid.innerHTML = '<p>Erro ao carregar eventos.</p>';
+                    console.error(e);
+                }
+            };
+
+            // Event Listener para o formulário de filtro
+            filterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                renderEvents();
+            });
+
+            // Renderização inicial
+            renderEvents();
+        });
+    </script>
+</body>
+
+</html>

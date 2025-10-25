@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gerenciar Eventos</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+</head>
+
+<body>
+    <header class="main-header" role="banner">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/corinthians.png" alt="Logo Corinthians Cult">
+            </a>
+
+            <div class="header-controls">
+                <div class="location-selector">
+                    <label for="state-select">Estado:</label>
+                    <select id="state-select" name="state">
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                    </select>
+                    <label for="city-select">Cidade:</label>
+                    <select id="city-select" name="city">
+                        <option value="SaoPaulo">São Paulo</option>
+                        <option value="Campinas">Campinas</option>
+                    </select>
+                </div>
+
+                <form class="search-bar" id="search-form" role="search">
+                    <label for="search-input">Buscar eventos</label>
+                    <input type="search" id="search-input" name="q" placeholder="Buscar por título, artista...">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+
+                <nav class="auth-nav" id="auth-nav-links">
+                    <a href="../login.html" class="btn btn-secondary" id="auth-login-btn">Login / Cadastro</a>
+                </nav>
+            </div>
+
+            <nav class="main-nav" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="../events.html?category=Todos">Todos</a></li>
+                    <li><a href="../events.html?category=Filmes">Filmes</a></li>
+                    <li><a href="../events.html?category=Shows">Shows</a></li>
+                    <li><a href="../events.html?category=Palestras">Palestras</a></li>
+                    <li><a href="../events.html?category=Peças">Peças</a></li>
+                    <li><a href="../events.html?category=Exposições">Exposições</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container dashboard-grid">
+
+            <aside class="dashboard-nav">
+                <ul>
+                    <li><a href="/admin/">Visão Geral</a></li>
+                    <li><a href="/admin/event-form.html" class="active">Cadastrar Evento</a></li>
+                </ul>
+            </aside>
+
+            <section class="dashboard-content">
+                <h1 id="event-form-title">Cadastrar Novo Evento</h1>
+
+                <form id="event-form" style="background: #fff; padding: 2rem; border-radius: 5px;">
+                    <input type="hidden" id="event-id" name="id">
+
+                    <div class="form-group">
+                        <label for="titulo">Título do Evento</label>
+                        <input type="text" id="titulo" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        <select id="categoria" name="category" required>
+                            <option value="Filmes">Filmes</option>
+                            <option value="Shows">Shows</option>
+                            <option value="Palestras">Palestras</option>
+                            <option value="Peças">Peças</option>
+                            <option value="Exposições">Exposições</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição / Sinopse</label>
+                        <textarea id="descricao" name="description" required></textarea>
+                    </div>
+
+                    <hr style="margin: 1rem 0;">
+
+                    <div class="form-group">
+                        <label for="local_nome">Nome do Local</label>
+                        <input type="text" id="local_nome" name="local_nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="local_endereco">Endereço do Local</label>
+                        <input type="text" id="local_endereco" name="local_endereco" required>
+                    </div>
+
+                    <hr style="margin: 1rem 0;">
+
+                    <div style="display: flex; gap: 1rem;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="data">Data</label>
+                            <input type="date" id="data" name="date" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="hora">Horário</label>
+                            <input type="time" id="hora" name="time" required>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="quantidade_total">Qtd. Total Ingressos</label>
+                            <input type="number" id="quantidade_total" name="quantity_total" min="1" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="preco_inteira">Preço Inteira (R$)</label>
+                            <input type="number" id="preco_inteira" name="price_inteira" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="preco_meia">Preço Meia (R$)</label>
+                            <input type="number" id="preco_meia" name="price_meia" min="0" step="0.01" required>
+                        </div>
+                    </div>
+
+                    <hr style="margin: 1rem 0;">
+
+                    <div style="display: flex; gap: 1rem;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="idioma">Idioma</label>
+                            <input type="text" id="idioma" name="idioma" value="N/A">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="classificacao">Classificação Indicativa</label>
+                            <input type="text" id="classificacao" name="classificacao" value="Livre">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="status">Status</label>
+                            <select id="status" name="status" required>
+                                <option value="Disponível">Disponível</option>
+                                <option value="Em breve">Em breve</option>
+                                <option value="Pré-venda">Pré-venda</option>
+                                <option value="Esgotado">Esgotado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trailer_url">URL do Trailer (Embed)</label>
+                        <input type="url" id="trailer_url" name="trailer_url"
+                            placeholder="https://www.youtube.com/embed/...">
+                    </div>
+                    <div class="form-group">
+                        <label for="imagem_capa">URL da Imagem de Capa</label>
+                        <input type="url" id="imagem_capa" name="imagem_capa"
+                            placeholder="https://via.placeholder.com/400x250" required>
+                    </div>
+
+                    <p class="error-message" id="form-error"></p>
+                    <button type="submit" class="btn btn-primary">Salvar Evento</button>
+                    <button type="button" id="delete-event-btn" class="btn btn-danger" style="display: none;">Excluir
+                        Evento</button>
+                </form>
+            </section>
+
+        </div>
+    </main>
+
+    <div class="container footer-content">
+        <div class="footer-section">
+            <h4>Institucional</h4>
+            <ul>
+                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Missão</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Trabalhe Conosco</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Políticas</h4>
+            <ul>
+                <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a></li>
+                <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a></li>
+                <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
+                <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Ajuda</h4>
+            <ul>
+                <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
+                <li><a href="#">Central de Atendimento</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Formas de Pagamento</h4>
+            <div class="payment-icons">
+                <span>[Visa]</span>
+                <span>[MasterCard]</span>
+                <span>[Pix]</span>
+            </div>
+
+            <h4 style="margin-top: 1rem;">Redes Sociais</h4>
+            <div class="social-icons">
+                <span>[Face]</span>
+                <span>[Insta]</span>
+                <span>[X]</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
+    </div>
+
+    <div id="privacy-policy-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
+            <h2>Política de Privacidade</h2>
+            <p>Texto completo da política de privacidade...</p>
+        </div>
+    </div>
+
+    <div id="refund-policy-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
+            <h2>Política de Reembolso</h2>
+            <p>Texto completo da política de reembolso...</p>
+        </div>
+    </div>
+
+    <div id="cookies-policy-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
+            <h2>Política de Cookies</h2>
+            <p>Texto completo da política de cookies...</p>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="terms-modal">&times;</span>
+            <h2>Termos de Uso</h2>
+            <p>Texto completo dos termos de uso...</p>
+        </div>
+    </div>
+
+    <div id="faq-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="faq-modal">&times;</span>
+            <h2>FAQ / Ajuda</h2>
+            <p>Perguntas e respostas frequentes...</p>
+        </div>
+    </div>
+
+    <footer class="main-footer" role="contentinfo">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Missão</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Políticas (RF7)</h4>
+                <ul>
+                    <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a>
+                    </li>
+                    <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a>
+                    </li>
+                    <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
+                    <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Ajuda (RF7.2)</h4>
+                <ul>
+                    <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
+                    <li><a href="#">Central de Atendimento</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Formas de Pagamento</h4>
+                <div class="payment-icons">
+                    <span>[Visa]</span>
+                    <span>[Master]</span>
+                    <span>[Pix]</span>
+                </div>
+
+                <h4 style="margin-top: 1rem;">Redes Sociais</h4>
+                <div class="social-icons">
+                    <span>[Face]</span>
+                    <span>[Insta]</span>
+                    <span>[X]</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
+        </div>
+
+        <div id="privacy-policy-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
+                <h2>Política de Privacidade</h2>
+                <p>Texto completo da política de privacidade...</p>
+            </div>
+        </div>
+
+        <div id="refund-policy-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
+                <h2>Política de Reembolso</h2>
+                <p>Texto completo da política de reembolso...</p>
+            </div>
+        </div>
+
+        <div id="cookies-policy-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
+                <h2>Política de Cookies</h2>
+                <p>Texto completo da política de cookies. (RF1.6)</p>
+            </div>
+        </div>
+
+        <div id="terms-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="terms-modal">&times;</span>
+                <h2>Termos de Uso</h2>
+                <p>Texto completo dos termos de uso...</p>
+            </div>
+        </div>
+
+        <div id="faq-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="faq-modal">&times;</span>
+                <h2>FAQ / Ajuda (RF7.2)</h2>
+                <p>Perguntas e respostas frequentes...</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/admin.js"></script>
+</body>
+
+</html>
