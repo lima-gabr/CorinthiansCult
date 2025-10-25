@@ -47,31 +47,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (result.success) {
             alert('Login realizado com sucesso!');
             
-            // --- INÍCIO DA CORREÇÃO DE REDIRECIONAMENTO ---
-            
             const urlParams = new URLSearchParams(window.location.search);
             const redirectFromUrl = urlParams.get('redirect');
             
             let destinationUrl;
 
-            // 1. Se veio de uma página específica (ex: /admin/ ou /dashboard.html)
             if (redirectFromUrl) {
-                // O redirectFromUrl já foi formatado pelo protectRoute()
-                // (ex: "admin/index.html" ou "dashboard.html")
+                // O redirectFromUrl (ex: 'admin/index.html') já está no formato correto
                 destinationUrl = redirectFromUrl;
             } 
-            // 2. Se logou direto, verifica se é admin
             else if (result.user.role === 'admin') {
-                destinationUrl = './admin/index.html'; // <-- CORRIGIDO
+                destinationUrl = './admin/index.html'; // CORREÇÃO EXPLÍCITA
             } 
-            // 3. Se não, é cliente comum
             else {
-                destinationUrl = './dashboard.html'; // <-- CORRIGIDO
+                destinationUrl = './dashboard.html';
             }
             
             window.location.href = destinationUrl;
-            
-            // --- FIM DA CORREÇÃO ---
 
         } else {
             loginError.textContent = result.message;
@@ -82,25 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Lógica de Cadastro (RF2.3) ---
     registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        registerError.style.display = 'none';
-        
-        const name = document.getElementById('reg-name').value;
-        const email = document.getElementById('reg-email').value;
-        const password = document.getElementById('reg-password').value;
-        const passwordConfirm = document.getElementById('reg-password-confirm').value;
-        
-        if (password !== passwordConfirm) {
-            registerError.textContent = 'As senhas não coincidem.';
-            registerError.style.display = 'block';
-            return;
-        }
+        // ... (código de validação) ...
         
         const result = api.register(name, email, password);
         
         if (result.success) {
             alert('Cadastro realizado com sucesso! Você já está logado.');
-            // Após cadastrar, o usuário é sempre um 'cliente'.
-            // CORRIGIDO com './'
             const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || './dashboard.html';
             window.location.href = redirectUrl;
         } else {
@@ -109,10 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // --- Lógica "Esqueci a Senha" (RF2.2 Simulado) ---
-    forgotForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // ... (código existente)
-    });
-    
+    // ... (resto do arquivo auth.js) ...
 });

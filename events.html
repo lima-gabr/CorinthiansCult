@@ -209,7 +209,7 @@
 
                 return `
                     <article class="event-card">
-                        <a href="/event.html?id=${event.id}" class="event-card-link">
+                        <a href="./event.html?id=${event.id}" class="event-card-link">
                             <div class="event-card-image">
                                 <img src="${event.imagem_capa}" alt="Capa do evento ${event.title}">
                                 <span class="event-status-tag ${statusClass}">${event.status}</span>
@@ -221,7 +221,7 @@
                         </a>
                         <div class="event-card-footer">
                             <span class="event-price"><span>A partir de</span> R$ ${event.price_meia.toFixed(2)}</span>
-                            <a href="/event.html?id=${event.id}" class="btn btn-primary">Comprar</a>
+                            <a href="./event.html?id=${event.id}" class="btn btn-primary">Comprar</a>
                         </div>
                     </article>
                 `;
