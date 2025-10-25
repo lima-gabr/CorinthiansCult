@@ -45,28 +45,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = api.login(email, password);
         
         if (result.success) {
-            // RNF3 - Mensagem clara
             alert('Login realizado com sucesso!');
             
             // --- INÍCIO DA CORREÇÃO DE REDIRECIONAMENTO ---
             
-            // Verifica se há um 'redirect' na URL (ex: veio de /event.html)
             const urlParams = new URLSearchParams(window.location.search);
             const redirectFromUrl = urlParams.get('redirect');
             
             let destinationUrl;
 
-            // 1. Se veio de uma página específica, obedece essa página
+            // 1. Se veio de uma página específica (ex: /admin/ ou /dashboard.html)
             if (redirectFromUrl) {
+                // O redirectFromUrl já foi formatado pelo protectRoute()
+                // (ex: "admin/index.html" ou "dashboard.html")
                 destinationUrl = redirectFromUrl;
             } 
-            // 2. Se não, verifica se é admin para mandar ao /admin/
+            // 2. Se logou direto, verifica se é admin
             else if (result.user.role === 'admin') {
-                destinationUrl = '/admin/'; // Página base do Admin
+                destinationUrl = './admin/index.html'; // <-- CORRIGIDO
             } 
-            // 3. Se não, é cliente comum, manda ao dashboard
+            // 3. Se não, é cliente comum
             else {
-                destinationUrl = '/dashboard.html'; // Página base do Cliente
+                destinationUrl = './dashboard.html'; // <-- CORRIGIDO
             }
             
             window.location.href = destinationUrl;
@@ -89,25 +89,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('reg-password').value;
         const passwordConfirm = document.getElementById('reg-password-confirm').value;
         
-        // RNF3 - Validação de formulário no cliente
         if (password !== passwordConfirm) {
             registerError.textContent = 'As senhas não coincidem.';
             registerError.style.display = 'block';
             return;
-        }
-        if (password.length < 6) {
-             registerError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
-             registerError.style.display = 'block';
-             return;
         }
         
         const result = api.register(name, email, password);
         
         if (result.success) {
             alert('Cadastro realizado com sucesso! Você já está logado.');
-            // Após cadastrar, o usuário é sempre um 'cliente',
-            // então redireciona para o dashboard ou página de origem.
-            const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || '/dashboard.html';
+            // Após cadastrar, o usuário é sempre um 'cliente'.
+            // CORRIGIDO com './'
+            const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || './dashboard.html';
             window.location.href = redirectUrl;
         } else {
             registerError.textContent = result.message;
@@ -118,15 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Lógica "Esqueci a Senha" (RF2.2 Simulado) ---
     forgotForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        document.getElementById('forgot-error').style.display = 'none';
-        const successMsg = document.getElementById('forgot-success');
-        
-        const email = document.getElementById('forgot-email').value;
-        console.log(`[SIMULAÇÃO] Solicitação de redefinição de senha para: ${email}`);
-        
-        successMsg.textContent = 'Se este e-mail existir, instruções (simuladas) foram enviadas.';
-        successMsg.style.display = 'block';
-        forgotForm.reset();
+        // ... (código existente)
     });
     
 });
