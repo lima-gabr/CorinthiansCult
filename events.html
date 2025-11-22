@@ -306,7 +306,7 @@
                             <div class="position-relative">
                                 <a href="./event.html?id=${event.id}" class="event-card-link text-decoration-none">
                                     <div class="ratio ratio-16x9 bg-dark">
-                                        <img src="${event.imagem_capa}" class="card-img-top object-fit-cover" alt="${event.title}">
+                                        <img src="${encodeURI(event.imagem_capa || './assets/images/placeholder.svg')}" class="card-img-top object-fit-cover" alt="${event.title}" onerror="this.onerror=null;this.src='./assets/images/placeholder.svg'">
                                     </div>
                                     <span class="position-absolute top-0 end-0 m-2 badge ${badgeClass}">${event.status}</span>
                                 </a>
