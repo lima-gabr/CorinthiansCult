@@ -269,6 +269,29 @@ main {
     transform: scale(1.1);
 }
 
+.text-primary {
+    color: var(--primary-color) !important;
+}
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #fff !important; /* Força texto branco */
+}
+
+.btn-primary:hover, 
+.btn-primary:active, 
+.btn-primary:focus {
+    background-color: var(--dark-color) !important;
+    border-color: var(--dark-color) !important;
+    color: #fff !important;
+}
+
+.event-card .btn-primary {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-weight: 600;
+}
+
 /* --- Adição para Responsividade --- */
 @media (min-width: 992px) {
     .w-lg-auto {
