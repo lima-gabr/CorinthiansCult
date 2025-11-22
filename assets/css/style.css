@@ -1,69 +1,76 @@
 /* ===================================================================
- * style.css - Folha de Estilos Global
+ * style.css - Folha de Estilos Global (Adaptada para Bootstrap 5)
  * Paleta de Cores (Interface 5), RNF1 (Responsividade), RNF2 (Acessibilidade)
  * =================================================================== */
 
 /* --- Configuração Base e Paleta --- */
 :root {
-    --primary-color: #504375; /* Interface 5 */
-    --dark-color: #39324d;    /* Interface 5 */
-    --accent-color: #ffe8ef;  /* Interface 5 */
+    --primary-color: #504375; /* Roxo Corinthians */
+    --dark-color: #39324d;    /* Roxo Escuro */
+    --accent-color: #ffe8ef;  /* Bege Claro/Rosado */
     --light-bg: #f9f9f9;
     --text-color: #333;
     --text-light: #f1f1f1;
     --border-color: #ddd;
-    --success-color: #4CAF50;
-    --error-color: #f44336;
+    --success-color: #198754; /* Bootstrap Success ajustado */
+    --error-color: #dc3545;   /* Bootstrap Danger ajustado */
     
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* --- Overrides do Bootstrap (Prioridade) --- */
+
+/* Botão Primário (Roxo) */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: var(--dark-color) !important;
+    border-color: var(--dark-color) !important;
 }
 
-body {
-    background-color: var(--light-bg);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+/* Botão Secundário (Accent) */
+.btn-secondary {
+    background-color: var(--accent-color) !important;
+    color: var(--dark-color) !important;
+    border-color: var(--dark-color) !important;
+}
+.btn-secondary:hover {
+    background-color: var(--dark-color) !important;
+    color: var(--accent-color) !important;
 }
 
-main {
-    flex-grow: 1;
-    padding: 1.5rem 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
+/* Links */
 a {
     color: var(--primary-color);
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
+    color: var(--dark-color);
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* RNF2 - Foco visível para acessibilidade */
-a:focus, button:focus, input:focus, select:focus {
+/* Foco visível para acessibilidade (RNF2) */
+a:focus, button:focus, input:focus, select:focus, .btn:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+    box-shadow: none !important; /* Remove shadow padrão do Bootstrap */
 }
 
-/* --- Header (Interface 5) --- */
+body {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto; /* Garante que o footer vá para baixo (Sticky Footer) */
+}
+
+/* --- Header Personalizado --- */
 .main-header {
     background-color: var(--dark-color);
     color: var(--text-light);
@@ -71,76 +78,30 @@ a:focus, button:focus, input:focus, select:focus {
     border-bottom: 3px solid var(--primary-color);
 }
 
-.main-header .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--accent-color);
-    text-decoration: none;
+    display: inline-block;
 }
 
 .logo img {
-    height: 50px; /* Define uma altura fixa para o logo */
-    width: auto;  /* Garante que a proporção da imagem seja mantida */
-    display: block; /* Remove qualquer espaço extra abaixo da imagem */
+    height: 50px;
+    width: auto;
+    display: block;
 }
 
-/* Ajuste no link do logo para centralizar verticalmente com os controles */
-.logo {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 1; /* Garante que o 'a' não adicione altura extra */
-}
-
-.header-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
-}
-
-.location-selector, .search-bar {
-    display: flex;
-    gap: 0.5rem;
-}
-
-/* RNF2 - Labels para acessibilidade */
-.search-bar label, .location-selector label {
-    position: absolute;
-    left: -10000px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-}
-
-.search-bar input {
-    min-width: 200px;
-    border-radius: 10px;
-    align-items: center;
-}
-
-.auth-nav {
-    display: flex;
-    gap: 1rem;
-}
-
-/* Navegação Principal (RF1.5) */
+/* Navegação Principal */
 .main-nav {
     background-color: var(--primary-color);
     width: 100%;
     margin-top: 1rem;
+    border-radius: 4px; /* Toque visual */
 }
 .main-nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
 }
 .main-nav li a {
     display: block;
@@ -152,462 +113,180 @@ a:focus, button:focus, input:focus, select:focus {
 .main-nav li a:hover, .main-nav li a.active {
     background-color: var(--dark-color);
     text-decoration: none;
+    color: var(--accent-color);
 }
 
+/* Customização dos Selects do Header */
 .location-selector select {
-    /* 1. Resetar a aparência padrão do navegador */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    /* 2. Aplicar a paleta de cores do projeto (Interface 5) */
-    background-color: var(--primary-color); /* Fundo roxo mais claro */
-    color: var(--text-light);               /* Texto claro */
-    border: 1px solid var(--primary-color); /* Borda sutil */
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-
-    /* 3. Ajustar padding para dar espaço para a nova seta */
-    /* Padding: Cima/Baixo | Direita (espaço p/ seta) | Esquerda */
-    padding: 0.5rem 2.5rem 0.5rem 0.8rem;
-
-    /* 4. Adicionar a seta customizada (SVG Data URI) */
-    /* Esta é uma seta 'chevron' preenchida com nossa cor --accent-color */
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: 1px solid var(--primary-color);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffe8ef'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.5rem center;
-    background-size: 1.5em; /* Tamanho da seta */
-
-    transition: background-color 0.2s, border-color 0.2s;
+    background-size: 1.2em;
 }
-
-/* 5. Estilos de Interação (Hover e Focus) */
-.location-selector select:hover {
-    background-color: #6a5a9c; /* Um tom mais claro que --primary-color */
-    border-color: var(--accent-color);
-}
-
-/* RNF2 - Acessibilidade: Garante que o 'focus' padrão seja substituído */
 .location-selector select:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 1px;
     border-color: var(--accent-color);
+    background-color: #6a5a9c;
 }
 
-/* --- Footer (Interface 5) --- */
-.main-footer {
-    background-color: var(--dark-color);
-    color: var(--text-light);
-    padding: 2rem 0;
-    margin-top: auto;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-}
-
-.footer-section h4 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-.footer-section li a {
-    color: var(--text-light);
-    opacity: 0.8;
-}
-.footer-section li a:hover {
-    opacity: 1;
-}
-
-.payment-icons, .social-icons {
-    display: flex;
-    gap: 0.5rem;
-    font-style: italic;
-    opacity: 0.7;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--primary-color);
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-
-/* --- Elementos Globais (Formulários, Botões, Cards) --- */
-
-/* Forms (RNF3 - Validação) */
-.form-group {
-    margin-bottom: 1rem;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 1rem;
-    align-items: center;
-}
-.form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-/* RNF3 - Mensagens de Erro */
-.error-message {
-    color: var(--error-color);
-    font-size: 0.9rem;
-    margin-top: 0.25rem;
-    display: none; /* Exibido via JS */
-}
-input:invalid {
-    border-color: var(--error-color);
-}
-
-/* Botões */
-.btn {
-    display: inline-block;
-    padding: 0.8rem 1.2rem;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.2s;
-}
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-}
-.btn-primary:hover {
-    background-color: var(--dark-color);
-    color: var(--text-light);
-}
-.btn-secondary {
-    background-color: var(--accent-color);
-    color: var(--dark-color);
-    border: 1px solid var(--dark-color);
-}
-.btn-secondary:hover {
-    background-color: var(--dark-color);
-    color: var(--accent-color);
-}
-.btn-danger {
-    background-color: var(--error-color);
-    color: var(--text-light);
-}
-.btn-danger:hover {
-    opacity: 0.8;
-}
-
-/* Cards de Evento (RF1.2) */
-.event-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-::placeholder{
-    text-align: center;
-}
-
+/* --- Cards de Evento --- */
 .event-card {
-    background-color: #fff;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .event-card:hover {
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
 }
+
 .event-card-image {
-    position: relative;
-    height: 180px;
+    height: 200px;
+    overflow: hidden;
     background-color: var(--dark-color);
+    position: relative;
 }
 .event-card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.event-status-tag { /* RF1.2 */
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 3px;
-    font-size: 0.8rem;
+
+/* Tags de Status */
+.event-status-tag {
     font-weight: bold;
-    color: var(--text-light);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
 }
 .event-status-tag.disponivel { background-color: var(--success-color); }
 .event-status-tag.esgotado { background-color: var(--error-color); }
 .event-status-tag.em-breve { background-color: var(--primary-color); }
 
-.event-card-content {
-    padding: 1rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-.event-card-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--dark-color);
-}
-.event-card-content p {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    opacity: 0.8;
-}
-.event-card-footer {
-    padding: 1rem;
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-}
 .event-price {
-    font-size: 1.1rem;
-    font-weight: bold;
     color: var(--primary-color);
-}
-.event-price span {
-    font-size: 0.9rem;
-    font-weight: normal;
-    opacity: 0.8;
-}
-
-/* --- Páginas Específicas --- */
-
-/* Auth (RF2) */
-.auth-container {
-    max-width: 450px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.auth-container h1 {
-    text-align: center;
-    color: var(--dark-color);
-    margin-bottom: 1.5rem;
-}
-.auth-toggle {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-#register-form, #forgot-form {
-    display: none;
-}
-
-/* Event Detail (RF5) */
-.event-detail-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 5px;
-}
-.event-media iframe { /* RF5.4 */
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: none;
-    border-radius: 5px;
-}
-.event-info h1 {
-    color: var(--dark-color);
-    margin-bottom: 1rem;
-}
-.event-meta {
-    list-style: none;
-    margin: 1rem 0;
-}
-.event-meta li {
-    margin-bottom: 0.5rem;
-    opacity: 0.9;
-}
-.purchase-box {
-    background-color: var(--light-bg);
-    padding: 1.5rem;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
-}
-.ticket-selection .form-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.ticket-selection input[type="number"] {
-    width: 70px;
-}
-.total-price {
-    font-size: 1.5rem;
     font-weight: bold;
-    color: var(--dark-color);
-    text-align: center;
-    margin: 1rem 0;
-}
-.event-actions {
-    margin-top: 1rem;
-    display: flex;
-    gap: 0.5rem;
 }
 
-/* Dashboard / Admin (RF2.5, RF8) */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 2rem;
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--dark-color);
+    color: var(--text-light);
+    padding: 3rem 0 1rem;
+    margin-top: auto; /* Sticky footer mechanic */
 }
-.dashboard-nav ul {
-    list-style: none;
-    background-color: #fff;
-    border-radius: 5px;
-    overflow: hidden;
-}
-.dashboard-nav li a {
-    display: block;
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
-}
-.dashboard-nav li a:hover, .dashboard-nav li a.active {
-    background-color: var(--accent-color);
-    color: var(--dark-color);
-    text-decoration: none;
-}
-.dashboard-content h1 {
-    color: var(--dark-color);
-    margin-bottom: 1.5rem;
-}
-.purchase-history-item, .admin-event-item {
-    background-color: #fff;
-    padding: 1.5rem;
-    border-radius: 5px;
+
+.footer-section h4 {
+    color: var(--accent-color);
     margin-bottom: 1rem;
-    border: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-}
-.admin-table th, .admin-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-}
-.admin-table th {
-    background-color: var(--light-bg);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Modal (RF7) */
+.footer-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+.footer-section li {
+    margin-bottom: 0.5rem;
+}
+.footer-section li a {
+    color: var(--text-light);
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+.footer-section li a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.payment-icons, .social-icons {
+    display: flex;
+    gap: 1rem;
+    font-style: italic;
+    opacity: 0.7;
+    justify-content: flex-start; /* Alinhamento padrão */
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 2rem;
+    padding-top: 1rem;
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+/* --- Modais (Mantidos para compatibilidade com a lógica customizada) --- */
 .modal {
-    display: none; /* Oculto por padrão */
-    position: fixed;
-    z-index: 1000;
+    display: none; 
+    position: fixed; 
+    z-index: 2000; /* Maior que o Bootstrap header */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    backdrop-filter: blur(3px);
 }
 .modal-content {
     background-color: #fff;
-    margin: 10% auto;
+    margin: 5% auto; 
     padding: 2rem;
-    border-radius: 5px;
-    max-width: 700px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 90%; 
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     position: relative;
-    animation: fadeIn 0.3s;
+    animation: modalFadeIn 0.3s;
 }
 .modal-close {
     position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    font-size: 2rem;
-    font-weight: bold;
+    top: 10px;
+    right: 15px;
     color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
+    transition: color 0.2s;
 }
-.modal-close:hover { color: var(--dark-color); }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+.modal-close:hover {
+    color: var(--dark-color);
 }
 
-
-/* --- RNF1 - Responsividade --- */
-
-@media (max-width: 992px) {
-    .event-detail-grid {
-        grid-template-columns: 1fr;
-    }
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-    .dashboard-nav ul {
-        display: flex;
-        overflow-x: auto;
-    }
-    .dashboard-nav li {
-        flex-shrink: 0;
-    }
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 
+/* Responsividade Extra */
 @media (max-width: 768px) {
-    .main-header .container, .header-controls {
+    .main-header .container {
         flex-direction: column;
-        align-items: stretch;
+        gap: 1rem;
+    }
+    .header-controls {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .search-bar {
+        width: 100%;
     }
     .main-nav ul {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
+    }
+    .main-nav li a {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .footer-content {
-        grid-template-columns: 1fr 1fr;
         text-align: center;
     }
     .payment-icons, .social-icons {
         justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-    .event-card-footer {
-        flex-direction: column;
-        gap: 0.5rem;
     }
 }

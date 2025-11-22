@@ -1,14 +1,15 @@
 /* ===================================================================
  * admin.js - Lógica do Painel de Administração (RF3, RF8)
+ * (Atualizado com Bootstrap e Caminhos Relativos para GitHub Pages)
  * =================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Rota: /admin/index.html
+    // Rota: /admin/index.html (Tabela de Eventos)
     if (document.getElementById('admin-events-tbody')) {
         loadAdminDashboard();
     }
     
-    // Rota: /admin/event-form.html
+    // Rota: /admin/event-form.html (Formulário)
     if (document.getElementById('event-form')) {
         initEventForm();
     }
@@ -22,44 +23,68 @@ function loadAdminDashboard() {
     const report = api.getAdminReport(); // RF8.1
     
     if (report.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6">Nenhum evento cadastrado.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">Nenhum evento cadastrado.</td></tr>';
         return;
     }
     
-    tbody.innerHTML = report.map(event => `
+    tbody.innerHTML = report.map(event => {
+        // Lógica de cores para o Badge do Bootstrap
+        let badgeClass = 'bg-secondary';
+        if (event.status === 'Disponível') badgeClass = 'bg-success';
+        else if (event.status === 'Esgotado') badgeClass = 'bg-danger';
+        else if (event.status === 'Em breve') badgeClass = 'bg-primary';
+        else if (event.status === 'Pré-venda') badgeClass = 'bg-info text-dark';
+
+        return `
         <tr>
-            <td>${event.title}</td>
+            <td class="fw-bold">${event.title}</td>
             <td>${event.category}</td>
-            <td>${event.sold}</td> <td>${event.total}</td>
-            <td><span classclass="event-status-tag ${event.status.toLowerCase().replace(' ', '-')}">${event.status}</span></td>
-            <td>
-                <a href="/admin/event-form.html?id=${event.id}" class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">Editar</a>
+            <td class="text-center">${event.sold}</td>
+            <td class="text-center">${event.total}</td>
+            <td class="text-center"><span class="badge ${badgeClass}">${event.status}</span></td>
+            <td class="text-end">
+                <a href="./event-form.html?id=${event.id}" class="btn btn-sm btn-outline-primary me-1">Editar</a>
+                <button class="btn btn-sm btn-outline-danger btn-delete-event" data-id="${event.id}">Excluir</button>
             </td>
         </tr>
-    `).join('');
+        `;
+    }).join('');
     
+    // Adiciona listeners aos botões de exclusão da tabela
+    addDeleteEventListeners();
+
     // RF8.3 - Exportar CSV (Simulado)
-    exportBtn.addEventListener('click', () => {
-        let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "ID,Titulo,Categoria,Vendidos,Total,Status\r\n";
-        
-        report.forEach(row => {
-            csvContent += `${row.id},"${row.title}",${row.category},${row.sold},${row.total},${row.status}\r\n`;
+    if(exportBtn) {
+        exportBtn.addEventListener('click', () => {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "ID,Titulo,Categoria,Vendidos,Total,Status\r\n";
+            
+            report.forEach(row => {
+                csvContent += `${row.id},"${row.title}",${row.category},${row.sold},${row.total},${row.status}\r\n`;
+            });
+            
+            console.log("--- SIMULAÇÃO EXPORTAR CSV (RF8.3) ---");
+            console.log(csvContent);
+            alert('CSV Simulado gerado no console (F12).');
         });
-        
-        // Simula o download
-        console.log("--- SIMULAÇÃO EXPORTAR CSV (RF8.3) ---");
-        console.log(csvContent);
-        alert('CSV Simulado gerado no console (F12).');
-        
-        // Código real para download:
-        // var encodedUri = encodeURI(csvContent);
-        // var link = document.createElement("a");
-        // link.setAttribute("href", encodedUri);
-        // link.setAttribute("download", "relatorio_eventos.csv");
-        // document.body.appendChild(link);
-        // link.click();
-        // document.body.removeChild(link);
+    }
+}
+
+// Função auxiliar para deletar eventos da lista
+function addDeleteEventListeners() {
+    document.querySelectorAll('.btn-delete-event').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const eventId = e.target.getAttribute('data-id');
+            if (confirm('Tem certeza que deseja EXCLUIR este evento? Esta ação não pode ser desfeita.')) {
+                const result = api.deleteEvent(eventId);
+                if (result.success) {
+                    // Recarrega a tabela sem recarregar a página
+                    loadAdminDashboard();
+                } else {
+                    alert(`Erro ao excluir: ${result.message}`);
+                }
+            }
+        });
     });
 }
 
@@ -68,7 +93,6 @@ function loadAdminDashboard() {
 function initEventForm() {
     const form = document.getElementById('event-form');
     const formTitle = document.getElementById('event-form-title');
-    const eventIdInput = document.getElementById('event-id');
     const deleteBtn = document.getElementById('delete-event-btn');
     const errorEl = document.getElementById('form-error');
     
@@ -83,10 +107,10 @@ function initEventForm() {
         const event = api.getEventById(eventId);
         
         if (event) {
-            formTitle.textContent = `Editando Evento: ${event.title}`;
-            deleteBtn.style.display = 'inline-block';
+            formTitle.textContent = `Editando: ${event.title}`;
+            deleteBtn.style.display = 'inline-block'; // Mostra botão de excluir
             
-            // Preenche o formulário (Apêndice 10)
+            // Preenche o formulário
             document.getElementById('event-id').value = event.id;
             document.getElementById('titulo').value = event.title;
             document.getElementById('categoria').value = event.category;
@@ -105,27 +129,29 @@ function initEventForm() {
             document.getElementById('status').value = event.status;
         } else {
             alert('Evento não encontrado!');
-            window.location.href = '/admin/';
+            // CORRIGIDO: Caminho relativo
+            window.location.href = './index.html';
         }
     }
     
     // Listener do Submit (Create ou Update)
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        errorEl.style.display = 'none';
+        if(errorEl) errorEl.style.display = 'none';
         
         // RNF3 - Validação
         if (!form.checkValidity()) {
-            errorEl.textContent = 'Por favor, preencha todos os campos obrigatórios.';
-            errorEl.style.display = 'block';
+            if(errorEl) {
+                errorEl.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+                errorEl.style.display = 'block';
+            }
+            form.classList.add('was-validated'); // Classe Bootstrap para feedback visual
             return;
         }
         
         const formData = new FormData(form);
         const eventData = {};
         
-        // Converte FormData para Objeto (necessário para os campos do Apêndice 10)
-        // E converte números
         for (let [key, value] of formData.entries()) {
             if (['quantity_total', 'price_inteira', 'price_meia'].includes(key)) {
                 eventData[key] = parseFloat(value);
@@ -145,23 +171,29 @@ function initEventForm() {
         
         if (result.success) {
             alert('Evento salvo com sucesso!');
-            window.location.href = '/admin/';
+            // CORRIGIDO: Caminho relativo para voltar à lista
+            window.location.href = './index.html';
         } else {
-            errorEl.textContent = `Erro ao salvar: ${result.message}`;
-            errorEl.style.display = 'block';
-        }
-    });
-    
-    // RF3.4 - Listener de Exclusão
-    deleteBtn.addEventListener('click', () => {
-        if (confirm('Tem certeza que deseja EXCLUIR este evento? Esta ação não pode ser desfeita.')) {
-            const result = api.deleteEvent(eventId);
-            if (result.success) {
-                alert('Evento excluído com sucesso.');
-                window.location.href = '/admin/';
-            } else {
-                alert(`Erro ao excluir: ${result.message}`);
+            if(errorEl) {
+                errorEl.textContent = `Erro ao salvar: ${result.message}`;
+                errorEl.style.display = 'block';
             }
         }
     });
+    
+    // RF3.4 - Listener de Exclusão (Botão dentro do form)
+    if(deleteBtn) {
+        deleteBtn.addEventListener('click', () => {
+            if (confirm('Tem certeza que deseja EXCLUIR este evento? Esta ação não pode ser desfeita.')) {
+                const result = api.deleteEvent(eventId);
+                if (result.success) {
+                    alert('Evento excluído com sucesso.');
+                    // CORRIGIDO: Caminho relativo
+                    window.location.href = './index.html';
+                } else {
+                    alert(`Erro ao excluir: ${result.message}`);
+                }
+            }
+        });
+    }
 }

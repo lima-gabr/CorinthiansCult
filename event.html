@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Evento - Corinthins Cult</title>
+    <title>Detalhes do Evento - Corinthians Cult</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="icon" type="image/png" href="./assets/images/favicon.png">
 </head>
@@ -11,30 +13,35 @@
 <body>
     <header class="main-header" role="banner">
         <div class="container">
-            <a href="./index.html" class="logo"> <img src="./assets/images/corinthians.png" alt="Logo Corinthians Cult">
+            <a href="./index.html" class="logo">
+                <img src="./assets/images/corinthians.png" alt="Logo Corinthians Cult">
             </a>
+
             <div class="header-controls">
                 <div class="location-selector">
-                    <label for="state-select">Estado:</label>
-                    <select id="state-select" name="state">
+                    <label for="state-select" class="visually-hidden">Estado:</label>
+                    <select id="state-select" name="state" class="form-select form-select-sm d-inline-block w-auto">
                         <option value="SP">São Paulo</option>
                         <option value="RJ">Rio de Janeiro</option>
                     </select>
-                    <label for="city-select">Cidade:</label>
-                    <select id="city-select" name="city">
+                    <label for="city-select" class="visually-hidden">Cidade:</label>
+                    <select id="city-select" name="city" class="form-select form-select-sm d-inline-block w-auto">
                         <option value="SaoPaulo">São Paulo</option>
                         <option value="Campinas">Campinas</option>
                     </select>
                 </div>
-                <form class="search-bar" id="search-form" role="search">
-                    <label for="search-input">Buscar eventos</label>
-                    <input type="search" id="search-input" name="q" placeholder="Buscar por título, artista...">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+
+                <form class="search-bar d-flex gap-2" id="search-form" role="search">
+                    <label for="search-input" class="visually-hidden">Buscar eventos</label>
+                    <input type="search" id="search-input" name="q" class="form-control form-control-sm" placeholder="Buscar por título...">
+                    <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
                 </form>
+
                 <nav class="auth-nav" id="auth-nav-links">
-                    <a href="./login.html" class="btn btn-secondary" id="auth-login-btn">Login / Cadastro</a>
+                    <a href="./login.html" class="btn btn-secondary btn-sm" id="auth-login-btn">Login / Cadastro</a>
                 </nav>
             </div>
+
             <nav class="main-nav" aria-label="Navegação principal">
                 <ul>
                     <li><a href="./events.html?category=Todos">Todos</a></li>
@@ -49,321 +56,321 @@
     </header>
 
     <main>
-        <div class="container">
+        <div class="container py-4">
             <div id="event-detail-container">
-                <p>Carregando detalhes do evento...</p>
+                <p class="text-center my-5">Carregando detalhes do evento...</p>
             </div>
         </div>
     </main>
 
-    <footer class="main-footer" role="contentinfo">
-        <div class="container footer-content">
-            <div class="footer-section">
-                <h4>Institucional</h4>
-                <ul>
-                    <li><a href="#">Sobre Nós</a></li>
-                    <li><a href="#">Missão</a></li>
-                    <li><a href="#">Contato</a></li>
-                    <li><a href="#">Trabalhe Conosco</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Políticas (RF7)</h4>
-                <ul>
-                    <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a>
-                    </li>
-                    <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a>
-                    </li>
-                    <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
-                    <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Ajuda (RF7.2)</h4>
-                <ul>
-                    <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
-                    <li><a href="#">Central de Atendimento</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Formas de Pagamento</h4>
-                <div class="payment-icons">
-                    <span>[Visa]</span>
-                    <span>[Master]</span>
-                    <span>[Pix]</span>
-                </div>
-
-                <h4 style="margin-top: 1rem;">Redes Sociais</h4>
-                <div class="social-icons">
-                    <span>[Face]</span>
-                    <span>[Insta]</span>
-                    <span>[X]</span>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
+    <div class="container footer-content mt-5">
+        <div class="footer-section">
+            <h4>Institucional</h4>
+            <ul>
+                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Missão</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Trabalhe Conosco</a></li>
+            </ul>
         </div>
 
-        <div id="privacy-policy-modal" class="modal">
-            <div class="modal-content">
-                <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
-                <h2>Política de Privacidade</h2>
-                <p>Texto completo da política de privacidade...</p>
-            </div>
+        <div class="footer-section">
+            <h4>Políticas</h4>
+            <ul>
+                <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a></li>
+                <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a></li>
+                <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
+                <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
+            </ul>
         </div>
 
-        <div id="refund-policy-modal" class="modal">
-            <div class="modal-content">
-                <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
-                <h2>Política de Reembolso</h2>
-                <p>Texto completo da política de reembolso...</p>
-            </div>
+        <div class="footer-section">
+            <h4>Ajuda</h4>
+            <ul>
+                <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
+                <li><a href="#">Central de Atendimento</a></li>
+            </ul>
         </div>
 
-        <div id="cookies-policy-modal" class="modal">
-            <div class="modal-content">
-                <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
-                <h2>Política de Cookies</h2>
-                <p>Texto completo da política de cookies. (RF1.6)</p>
+        <div class="footer-section">
+            <h4>Formas de Pagamento</h4>
+            <div class="payment-icons">
+                <span>[Visa]</span>
+                <span>[MasterCard]</span>
+                <span>[Pix]</span>
             </div>
-        </div>
 
-        <div id="terms-modal" class="modal">
-            <div class="modal-content">
-                <span class="modal-close" data-modal="terms-modal">&times;</span>
-                <h2>Termos de Uso</h2>
-                <p>Texto completo dos termos de uso...</p>
+            <h4 style="margin-top: 1rem;">Redes Sociais</h4>
+            <div class="social-icons">
+                <span>[Face]</span>
+                <span>[Insta]</span>
+                <span>[X]</span>
             </div>
         </div>
+    </div>
+    <div class="footer-bottom text-center py-3">
+        <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
+    </div>
 
-        <div id="faq-modal" class="modal">
-            <div class="modal-content">
-                <span class="modal-close" data-modal="faq-modal">&times;</span>
-                <h2>FAQ / Ajuda</h2>
-                <p>Perguntas e respostas frequentes...</p>
-            </div>
+    <div id="privacy-policy-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
+            <h2>Política de Privacidade</h2>
+            <p>Texto completo da política de privacidade...</p>
         </div>
-    </footer>
+    </div>
+
+    <div id="refund-policy-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
+            <h2>Política de Reembolso</h2>
+            <p>Texto completo da política de reembolso...</p>
+        </div>
+    </div>
+
+    <div id="cookies-policy-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
+            <h2>Política de Cookies</h2>
+            <p>Texto completo da política de cookies. (RF1.6)</p>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="terms-modal">&times;</span>
+            <h2>Termos de Uso</h2>
+            <p>Texto completo dos termos de uso...</p>
+        </div>
+    </div>
+
+    <div id="faq-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="faq-modal">&times;</span>
+            <h2>FAQ / Ajuda</h2>
+            <p>Perguntas e respostas frequentes...</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./assets/js/api.js"></script>
     <script src="./assets/js/main.js"></script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const container = document.getElementById('event-detail-container');
-        const urlParams = new URLSearchParams(window.location.search);
-        const eventId = urlParams.get('id');
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('event-detail-container');
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
 
-        let currentEvent = null; 
+            let currentEvent = null;
 
-        if (!eventId) {
-            container.innerHTML = '<h1>Evento não encontrado.</h1><a href="./index.html">Voltar</a>';
-            return;
-        }
-
-        const loadEventDetails = () => {
-            currentEvent = api.getEventById(eventId);
-
-            if (!currentEvent) {
-                container.innerHTML = '<h1>Evento não encontrado.</h1><a href="./index.html">Voltar</a>';
+            if (!eventId) {
+                container.innerHTML = '<div class="alert alert-warning"><h1>Evento não encontrado.</h1><a href="./index.html" class="btn btn-outline-secondary mt-3">Voltar</a></div>';
                 return;
             }
 
-            
-            const mediaElement = currentEvent.trailer_url
-                ? `<iframe src="${currentEvent.trailer_url}" title="Trailer do ${currentEvent.title}" allowfullscreen></iframe>`
-                : `<img src="${currentEvent.imagem_capa}" alt="Capa do ${currentEvent.title}">`;
+            const loadEventDetails = () => {
+                currentEvent = api.getEventById(eventId);
 
-            const availableTickets = currentEvent.quantity_total - (currentEvent.quantity_sold || 0);
-            let purchaseArea = '';
+                if (!currentEvent) {
+                    container.innerHTML = '<div class="alert alert-warning"><h1>Evento não encontrado.</h1><a href="./index.html" class="btn btn-outline-secondary mt-3">Voltar</a></div>';
+                    return;
+                }
 
-            if (currentEvent.status === 'Disponível') {
-                purchaseArea = `
-                    <form id="purchase-form">
-                        <h4>Comprar Ingressos</h4>
-                        <p>Disponíveis: ${availableTickets}</p>
-                        
-                        <div class="ticket-selection">
-                            <div class="form-group">
-                                <label for="qty-inteira">Inteira (R$ ${currentEvent.price_inteira.toFixed(2)})</label>
-                                <input type="number" id="qty-inteira" name="inteira" value="0" min="0" max="10">
+                // Media Element com classe responsiva do Bootstrap
+                const mediaElement = currentEvent.trailer_url
+                    ? `<div class="ratio ratio-16x9 mb-4 rounded overflow-hidden shadow-sm"><iframe src="${currentEvent.trailer_url}" title="Trailer do ${currentEvent.title}" allowfullscreen></iframe></div>`
+                    : `<img src="${currentEvent.imagem_capa}" alt="Capa do ${currentEvent.title}" class="img-fluid rounded shadow-sm w-100 mb-4">`;
+
+                const availableTickets = currentEvent.quantity_total - (currentEvent.quantity_sold || 0);
+                let purchaseArea = '';
+
+                if (currentEvent.status === 'Disponível') {
+                    purchaseArea = `
+                        <form id="purchase-form" class="card-body">
+                            <h4 class="card-title mb-3">Comprar Ingressos</h4>
+                            <p class="text-muted mb-3 small">Disponíveis: ${availableTickets}</p>
+                            
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label for="qty-inteira" class="form-label small">Inteira (R$ ${currentEvent.price_inteira.toFixed(2)})</label>
+                                    <input type="number" id="qty-inteira" name="inteira" class="form-control" value="0" min="0" max="10">
+                                </div>
+                                <div class="col-6">
+                                    <label for="qty-meia" class="form-label small">Meia (R$ ${currentEvent.price_meia.toFixed(2)})</label>
+                                    <input type="number" id="qty-meia" name="meia" class="form-control" value="0" min="0" max="10">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="qty-meia">Meia (R$ ${currentEvent.price_meia.toFixed(2)})</label>
-                                <input type="number" id="qty-meia" name="meia" value="0" min="0" max="10">
+                            
+                            <div class="mb-3">
+                                <label for="seat-select" class="form-label small">Seleção de Assento (Simulado)</label>
+                                <select id="seat-select" name="seat" class="form-select">
+                                    <option value="aleatorio">Escolha aleatória</option>
+                                    <option value="A1">Fila A, Assento 1</option>
+                                    <option value="A2">Fila A, Assento 2</option>
+                                </select>
                             </div>
+                            
+                            <div class="total-price h4 text-center my-3 text-primary fw-bold" id="total-price-display">
+                                Total: R$ 0,00
+                            </div>
+                            
+                            <p class="error-message text-danger small" id="purchase-error" style="display: none;"></p>
+                            <button type="submit" class="btn btn-primary w-100 btn-lg shadow-sm">Finalizar Compra</button>
+                        </form>
+                    `;
+                } else if (currentEvent.status === 'Esgotado' || currentEvent.status === 'Em breve') {
+                    purchaseArea = `
+                        <div class="card-body text-center">
+                            <h4 class="text-muted">Ingressos Indisponíveis</h4>
+                            <p class="mb-4">Este evento está <span class="fw-bold">${currentEvent.status.toLowerCase()}</span>.</p>
+                            <button id="notify-me-btn" class="btn btn-secondary w-100">Notifique-me quando disponível</button>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="seat-select">Seleção de Assento (Simulado)</label>
-                            <select id="seat-select" name="seat">
-                                <option value="aleatorio">Escolha aleatória</option>
-                                <option value="A1">Fila A, Assento 1</option>
-                                <option value="A2">Fila A, Assento 2</option>
-                            </select>
-                        </div>
-                        
-                        <div class="total-price" id="total-price-display">
-                            Total: R$ 0,00
-                        </div>
-                        
-                        <p class="error-message" id="purchase-error"></p>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Finalizar Compra</button>
-                    </form>
-                `;
-            } else if (currentEvent.status === 'Esgotado' || currentEvent.status === 'Em breve') {
-                purchaseArea = `
-                    <h4>Ingressos Indisponíveis</h4>
-                    <p>Este evento está ${currentEvent.status.toLowerCase()}.</p>
-                    <button id="notify-me-btn" class="btn btn-secondary" style="width: 100%;">Notifique-me quando disponível</button>
-                `;
-            }
+                    `;
+                }
 
-            container.innerHTML = `
-                <div class="event-detail-grid">
-                    <div class="event-main-content">
-                        <div class="event-media">
+                // LAYOUT RESPONSIVO COM GRID BOOTSTRAP
+                container.innerHTML = `
+                    <div class="row g-4">
+                        <div class="col-lg-8">
                             ${mediaElement}
-                        </div>
-                        <div class="event-info">
-                            <h1>${currentEvent.title}</h1>
-                            <p>${currentEvent.description}</p>
                             
-                            <ul class="event-meta">
-                                <li><strong>Data:</strong> ${new Date(currentEvent.date).toLocaleDateString('pt-BR')} às ${currentEvent.time}</li>
-                                <li><strong>Local:</strong> ${currentEvent.local_nome} (${currentEvent.local_endereco})</li>
-                                <li><strong>Categoria:</strong> ${currentEvent.category}</li>
-                                <li><strong>Classificação:</strong> ${currentEvent.classificacao}</li>
-                                <li><strong>Idioma:</strong> ${currentEvent.idioma}</li>
-                            </ul>
-                            
-                            <div class="event-extra-details">
-                                <h4>Sinopse e Informações Técnicas</h4>
-                                <p>${currentEvent.description}</p>
-                                <h4>Regras e Acessibilidade</h4>
-                                <p>Informações sobre regras do evento e acessibilidade (placeholder).</p>
+                            <div class="event-info">
+                                <h1 class="display-5 fw-bold mb-3 text-dark">${currentEvent.title}</h1>
+                                <p class="lead text-muted mb-4">${currentEvent.description}</p>
+                                
+                                <div class="bg-light p-4 rounded mb-4 border">
+                                    <h5 class="mb-3">Detalhes</h5>
+                                    <ul class="list-unstyled mb-0 row g-2">
+                                        <li class="col-md-6"><strong>Data:</strong> ${new Date(currentEvent.date).toLocaleDateString('pt-BR')} às ${currentEvent.time}</li>
+                                        <li class="col-md-6"><strong>Local:</strong> ${currentEvent.local_nome}</li>
+                                        <li class="col-md-12 text-muted small">${currentEvent.local_endereco}</li>
+                                        <li class="col-md-6"><strong>Categoria:</strong> ${currentEvent.category}</li>
+                                        <li class="col-md-6"><strong>Classificação:</strong> ${currentEvent.classificacao}</li>
+                                        <li class="col-md-6"><strong>Idioma:</strong> ${currentEvent.idioma}</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="event-extra-details">
+                                    <h4 class="h5 mb-2">Sinopse Completa</h4>
+                                    <p class="text-muted mb-4">${currentEvent.description}</p>
+                                    <h4 class="h5 mb-2">Regras e Acessibilidade</h4>
+                                    <p class="text-muted">Informações sobre regras do evento e acessibilidade (placeholder).</p>
+                                </div>
                             </div>
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <aside class="event-sidebar position-sticky" style="top: 2rem;">
+                                <div class="card shadow border-0 mb-3">
+                                    ${purchaseArea}
+                                </div>
+                                <div class="d-grid">
+                                    <button id="share-btn" class="btn btn-outline-secondary">Compartilhar Evento</button>
+                                </div>
+                            </aside>
                         </div>
                     </div>
-                    
-                    <aside class="event-sidebar">
-                        <div class="purchase-box">
-                            ${purchaseArea}
-                        </div>
-                        <div class="event-actions">
-                            <button id="share-btn" class="btn btn-secondary">Compartilhar</button>
-                        </div>
-                    </aside>
-                </div>
-            `;
+                `;
 
-            addEventListeners();
-        };
+                addEventListeners();
+            };
 
-        const addEventListeners = () => {
-            const purchaseForm = document.getElementById('purchase-form');
-            const notifyBtn = document.getElementById('notify-me-btn');
-            const shareBtn = document.getElementById('share-btn');
+            const addEventListeners = () => {
+                const purchaseForm = document.getElementById('purchase-form');
+                const notifyBtn = document.getElementById('notify-me-btn');
+                const shareBtn = document.getElementById('share-btn');
 
-            if (purchaseForm) {
-                const qtyInteira = document.getElementById('qty-inteira');
-                const qtyMeia = document.getElementById('qty-meia');
-                const priceDisplay = document.getElementById('total-price-display');
+                if (purchaseForm) {
+                    const qtyInteira = document.getElementById('qty-inteira');
+                    const qtyMeia = document.getElementById('qty-meia');
+                    const priceDisplay = document.getElementById('total-price-display');
 
-                const updateTotalPrice = () => {
-                    const total = (qtyInteira.value * currentEvent.price_inteira) + (qtyMeia.value * currentEvent.price_meia);
-                    priceDisplay.textContent = `Total: R$ ${total.toFixed(2)}`;
-                };
-
-                qtyInteira.addEventListener('input', updateTotalPrice);
-                qtyMeia.addEventListener('input', updateTotalPrice);
-
-                purchaseForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const user = api.getCurrentUser();
-                    const errorEl = document.getElementById('purchase-error');
-                    errorEl.style.display = 'none';
-
-                    // CORRIGIDO AQUI: Adicionadas chaves {} e corrigida a sintaxe do href
-                    if (!user) {
-                        alert('Você precisa estar logado para comprar.');
-                        window.location.href = `./login.html?redirect=${encodeURIComponent(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) + window.location.search)}`;
-                        return;
-                    }
-
-                    const tickets = {
-                        inteira: parseInt(qtyInteira.value) || 0,
-                        meia: parseInt(qtyMeia.value) || 0
+                    const updateTotalPrice = () => {
+                        const total = (qtyInteira.value * currentEvent.price_inteira) + (qtyMeia.value * currentEvent.price_meia);
+                        priceDisplay.textContent = `Total: R$ ${total.toFixed(2)}`;
                     };
 
-                    if (tickets.inteira === 0 && tickets.meia === 0) {
-                        errorEl.textContent = 'Selecione pelo menos um ingresso.';
-                        errorEl.style.display = 'block';
-                        return;
-                    }
+                    qtyInteira.addEventListener('input', updateTotalPrice);
+                    qtyMeia.addEventListener('input', updateTotalPrice);
 
-                    const result = api.purchaseTicket(user.id, currentEvent.id, tickets);
+                    purchaseForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const user = api.getCurrentUser();
+                        const errorEl = document.getElementById('purchase-error');
+                        errorEl.style.display = 'none';
 
-                    if (result.success) {
-                        alert(`Compra finalizada com sucesso (Simulado)! Seu comprovante (ID: ${result.purchase.id}) está disponível no seu painel.`);
-                        // CORRIGIDO AQUI: Trocado / por ./
-                        window.location.href = './dashboard.html';
-                    } else {
-                        errorEl.textContent = result.message; 
-                        errorEl.style.display = 'block';
-                        loadEventDetails(); 
-                    }
-                });
-            }
+                        if (!user) {
+                            alert('Você precisa estar logado para comprar.');
+                            window.location.href = `./login.html?redirect=${encodeURIComponent(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) + window.location.search)}`;
+                            return;
+                        }
 
-            if (notifyBtn) {
-                notifyBtn.addEventListener('click', () => {
-                    const user = api.getCurrentUser();
-                    if (!user) {
-                        alert('Você precisa estar logado para solicitar notificações.');
-                        // CORRIGIDO AQUI: Trocado / por ./ e corrigida a sintaxe
-                        window.location.href = `./login.html?redirect=${encodeURIComponent(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) + window.location.search)}`;
-                        return;
-                    }
+                        const tickets = {
+                            inteira: parseInt(qtyInteira.value) || 0,
+                            meia: parseInt(qtyMeia.value) || 0
+                        };
 
-                    const result = api.requestNotification(user.id, currentEvent.id);
-                    alert(result.message);
-                    if (result.success) notifyBtn.disabled = true;
-                });
-            }
+                        if (tickets.inteira === 0 && tickets.meia === 0) {
+                            errorEl.textContent = 'Selecione pelo menos um ingresso.';
+                            errorEl.style.display = 'block';
+                            return;
+                        }
 
-            if (shareBtn) {
-                // ... (A lógica de 'share' estava correta) ...
-                shareBtn.addEventListener('click', async () => {
-                    const shareData = {
-                        title: currentEvent.title,
-                        text: `Confira este evento incrível: ${currentEvent.title}`,
-                        url: window.location.href
-                    };
-                    try {
-                        if (navigator.share) {
-                            await navigator.share(shareData);
+                        const result = api.purchaseTicket(user.id, currentEvent.id, tickets);
+
+                        if (result.success) {
+                            alert(`Compra finalizada com sucesso (Simulado)! Seu comprovante (ID: ${result.purchase.id}) está disponível no seu painel.`);
+                            window.location.href = './dashboard.html';
                         } else {
+                            errorEl.textContent = result.message;
+                            errorEl.style.display = 'block';
+                            loadEventDetails();
+                        }
+                    });
+                }
+
+                if (notifyBtn) {
+                    notifyBtn.addEventListener('click', () => {
+                        const user = api.getCurrentUser();
+                        if (!user) {
+                            alert('Você precisa estar logado para solicitar notificações.');
+                            window.location.href = `./login.html?redirect=${encodeURIComponent(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) + window.location.search)}`;
+                            return;
+                        }
+
+                        const result = api.requestNotification(user.id, currentEvent.id);
+                        alert(result.message);
+                        if (result.success) notifyBtn.disabled = true;
+                    });
+                }
+
+                if (shareBtn) {
+                    shareBtn.addEventListener('click', async () => {
+                        const shareData = {
+                            title: currentEvent.title,
+                            text: `Confira este evento incrível: ${currentEvent.title}`,
+                            url: window.location.href
+                        };
+                        try {
+                            if (navigator.share) {
+                                await navigator.share(shareData);
+                            } else {
+                                navigator.clipboard.writeText(window.location.href);
+                                alert('Link do evento copiado para a área de transferência!');
+                            }
+                        } catch (err) {
+                            console.error('Erro ao compartilhar:', err);
                             navigator.clipboard.writeText(window.location.href);
                             alert('Link do evento copiado para a área de transferência!');
                         }
-                    } catch (err) {
-                        console.error('Erro ao compartilhar:', err);
-                        navigator.clipboard.writeText(window.location.href);
-                        alert('Link do evento copiado para a área de transferência!');
-                    }
-                });
-            }
-        };
+                    });
+                }
+            };
 
-        loadEventDetails();
-    });
-</script>
+            loadEventDetails();
+        });
+    </script>
 </body>
-
-
 
 </html>

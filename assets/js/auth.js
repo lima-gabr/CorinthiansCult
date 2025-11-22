@@ -1,16 +1,22 @@
 /* ===================================================================
  * auth.js - Lógica de Autenticação (RF2)
+ * (Atualizado com Validações e Caminhos Relativos)
  * =================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Elementos dos Formulários
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
     const forgotForm = document.getElementById('forgot-form');
 
+    // Elementos de Erro/Sucesso
     const loginError = document.getElementById('login-error');
     const registerError = document.getElementById('register-error');
+    const forgotError = document.getElementById('forgot-error');
+    const forgotSuccess = document.getElementById('forgot-success');
     
-    // Links de alternância
+    // --- Alternância de Telas (Toggle) ---
+    
     document.getElementById('show-register').addEventListener('click', (e) => {
         e.preventDefault();
         loginForm.style.display = 'none';
@@ -24,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         forgotForm.style.display = 'none';
         registerForm.style.display = 'none';
     };
+    
     document.getElementById('show-login').addEventListener('click', showLogin);
     document.getElementById('show-login-from-forgot').addEventListener('click', showLogin);
 
@@ -35,9 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // --- Lógica de Login (RF2.1) ---
+    
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        loginError.style.display = 'none';
+        if(loginError) loginError.style.display = 'none';
         
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
@@ -45,20 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = api.login(email, password);
         
         if (result.success) {
-            alert('Login realizado com sucesso!');
+            // RNF3 - Feedback
+            // alert('Login realizado com sucesso!'); // Opcional, removido para fluxo mais rápido
             
             const urlParams = new URLSearchParams(window.location.search);
             const redirectFromUrl = urlParams.get('redirect');
             
             let destinationUrl;
 
+            // 1. Prioridade: Redirecionamento vindo da URL (ex: tentativa de compra)
             if (redirectFromUrl) {
-                // O redirectFromUrl (ex: 'admin/index.html') já está no formato correto
                 destinationUrl = redirectFromUrl;
             } 
+            // 2. Se for Admin
             else if (result.user.role === 'admin') {
-                destinationUrl = './admin/index.html'; // CORREÇÃO EXPLÍCITA
+                destinationUrl = './admin/index.html'; 
             } 
+            // 3. Padrão: Dashboard do Cliente
             else {
                 destinationUrl = './dashboard.html';
             }
@@ -66,15 +77,43 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = destinationUrl;
 
         } else {
-            loginError.textContent = result.message;
-            loginError.style.display = 'block';
+            if(loginError) {
+                loginError.textContent = result.message;
+                loginError.style.display = 'block';
+            } else {
+                alert(result.message);
+            }
         }
     });
 
     // --- Lógica de Cadastro (RF2.3) ---
+    
     registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // ... (código de validação) ...
+        if(registerError) registerError.style.display = 'none';
+        
+        // Captura dos valores (CORREÇÃO: Adicionado aqui)
+        const name = document.getElementById('reg-name').value;
+        const email = document.getElementById('reg-email').value;
+        const password = document.getElementById('reg-password').value;
+        const passwordConfirm = document.getElementById('reg-password-confirm').value;
+        
+        // Validação
+        if (password !== passwordConfirm) {
+            if(registerError) {
+                registerError.textContent = 'As senhas não coincidem.';
+                registerError.style.display = 'block';
+            } else { alert('As senhas não coincidem.'); }
+            return;
+        }
+        
+        if (password.length < 6) {
+             if(registerError) {
+                registerError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+                registerError.style.display = 'block';
+             } else { alert('Senha muito curta.'); }
+             return;
+        }
         
         const result = api.register(name, email, password);
         
@@ -83,10 +122,33 @@ document.addEventListener('DOMContentLoaded', () => {
             const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || './dashboard.html';
             window.location.href = redirectUrl;
         } else {
-            registerError.textContent = result.message;
-            registerError.style.display = 'block';
+            if(registerError) {
+                registerError.textContent = result.message;
+                registerError.style.display = 'block';
+            } else { alert(result.message); }
         }
     });
     
-    // ... (resto do arquivo auth.js) ...
+    // --- Lógica "Esqueci a Senha" (RF2.2 Simulado) ---
+    
+    forgotForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if(forgotError) forgotError.style.display = 'none';
+        if(forgotSuccess) forgotSuccess.style.display = 'none';
+        
+        const email = document.getElementById('forgot-email').value;
+        
+        // Simulação de envio
+        console.log(`[SIMULAÇÃO] Solicitação de redefinição de senha para: ${email}`);
+        
+        if(forgotSuccess) {
+            forgotSuccess.textContent = 'Se este e-mail existir, instruções foram enviadas.';
+            forgotSuccess.style.display = 'block';
+        } else {
+            alert('Instruções enviadas (simulado).');
+        }
+        
+        forgotForm.reset();
+    });
+    
 });
