@@ -5,63 +5,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corinthians Cult - Ingressos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="icon" type="image/png" href="./assets/images/favicon.png">
 </head>
 
 <body>
-    <header class="main-header" role="banner">
-        <div class="container">
-            <a href="./index.html" class="logo">
-                <img src="./assets/images/corinthians.png" alt="Logo Corinthians Cult">
-            </a>
 
-            <div class="header-controls">
-                <div class="location-selector">
-                    <label for="state-select" class="visually-hidden">Estado:</label>
-                    <select id="state-select" name="state" class="form-select form-select-sm d-inline-block w-auto">
-                        <option value="SP">São Paulo</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                    </select>
-                    <label for="city-select" class="visually-hidden">Cidade:</label>
-                    <select id="city-select" name="city" class="form-select form-select-sm d-inline-block w-auto">
-                        <option value="SaoPaulo">São Paulo</option>
-                        <option value="Campinas">Campinas</option>
-                    </select>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-corinthians-dark py-3">
+            <div class="container position-relative">
+                <a class="navbar-brand" href="./index.html">
+                    <img src="./assets/images/corinthians.png" alt="Corinthians Cult">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader"
+                    aria-controls="mainHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainHeader">
+
+                    <div class="d-none d-lg-block" style="width: 130px;"></div>
+
+                    <form class="d-flex flex-column flex-lg-row align-items-center my-3 my-lg-0 mx-auto w-100"
+                        id="search-form" role="search" style="max-width: 600px;">
+                        <div class="input-group w-100 shadow-sm">
+                            <select class="form-select form-select-sm flex-grow-0 bg-light border-0"
+                                style="width: 70px;" aria-label="Estado" id="state-select">
+                                <option value="SP">SP</option>
+                                <option value="RJ">RJ</option>
+                            </select>
+                            <div style="width: 1px; background: #ccc;"></div>
+                            <select class="form-select form-select-sm flex-grow-0 bg-light border-0"
+                                style="width: 110px;" aria-label="Cidade" id="city-select">
+                                <option value="SaoPaulo">São Paulo</option>
+                                <option value="Campinas">Campinas</option>
+                                <option value="Rio">R. Janeiro</option>
+                            </select>
+                            <input class="form-control border-0" type="search" id="search-input"
+                                placeholder="Buscar eventos..." aria-label="Search">
+
+                            <button class="btn bg-white border-0" type="submit">
+                                <img src="https://api.iconify.design/bi:search.svg?color=%23504375" alt="Buscar"
+                                    style="width: 18px; height: 18px;">
+                            </button>
+                        </div>
+                        <button class="btn btn-secondary w-100 d-lg-none mt-2" type="submit">Buscar</button>
+                    </form>
+
+                    <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center justify-content-lg-end mt-3 mt-lg-0"
+                        id="auth-nav-links" style="min-width: 180px;">
+                        <a href="./login.html" class="btn btn-secondary btn-sm fw-bold px-4 py-2 w-100 w-lg-auto">Login
+                            / Cadastro</a>
+                    </div>
                 </div>
-
-                <form class="search-bar d-flex gap-2" id="search-form" role="search">
-                    <label for="search-input" class="visually-hidden">Buscar eventos</label>
-                    <input type="search" id="search-input" name="q" class="form-control form-control-sm" placeholder="Buscar por título...">
-                    <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
-                </form>
-
-                <nav class="auth-nav" id="auth-nav-links">
-                    <a href="./login.html" class="btn btn-secondary btn-sm" id="auth-login-btn">Login / Cadastro</a>
-                </nav>
             </div>
+        </nav>
 
-            <nav class="main-nav" aria-label="Navegação principal">
-                <ul>
-                    <li><a href="./events.html?category=Todos">Todos</a></li>
-                    <li><a href="./events.html?category=Filmes">Filmes</a></li>
-                    <li><a href="./events.html?category=Shows">Shows</a></li>
-                    <li><a href="./events.html?category=Palestras">Palestras</a></li>
-                    <li><a href="./events.html?category=Peças">Peças</a></li>
-                    <li><a href="./events.html?category=Exposições">Exposições</a></li>
+        <div class="sub-nav">
+            <div class="container">
+                <ul class="nav justify-content-center flex-nowrap overflow-auto pb-1 pb-md-0">
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Todos">Todos</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Filmes">Filmes</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Shows">Shows</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap"
+                            href="./events.html?category=Palestras">Palestras</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Peças">Peças</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap"
+                            href="./events.html?category=Exposições">Exposições</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
+    <main class="py-5">
+        <div class="container">
 
-    <main>
-        <div class="container py-4">
-
-            <section class="featured-events mb-5" aria-labelledby="featured-title">
-                <h1 id="featured-title" class="mb-4 pb-2 border-bottom">Eventos em Destaque</h1>
+            <section class="mb-5">
+                <h2 class="mb-4 pb-2 border-bottom text-dark">Eventos em Destaque</h2>
                 <div class="row g-4" id="featured-events-grid">
-                    <div class="col-12 text-center py-5">
+                    <div class="col-12 text-center">
                         <div class="spinner-border text-primary" role="status">
                             <span class="visually-hidden">Carregando...</span>
                         </div>
@@ -69,12 +96,12 @@
                 </div>
             </section>
 
-            <section class="recommendations mb-5" aria-labelledby="recommend-title">
-                <h2 id="recommend-title" class="h3 mb-4">Recomendado para Você</h2>
+            <section>
+                <h3 class="mb-4 text-dark">Recomendado para Você</h3>
                 <div class="row g-4" id="recommended-events-grid">
                     <div class="col-12">
-                        <div class="alert alert-light border text-center">
-                            Recomendações baseadas em seu histórico aparecerão aqui.
+                        <div class="alert alert-light border text-center text-muted">
+                            Faça login para ver recomendações personalizadas.
                         </div>
                     </div>
                 </div>
@@ -83,183 +110,106 @@
         </div>
     </main>
 
-    <div class="container footer-content mt-5">
-        <div class="footer-section">
-            <h4>Institucional</h4>
-            <ul>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Missão</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Trabalhe Conosco</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Políticas</h4>
-            <ul>
-                <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Ajuda</h4>
-            <ul>
-                <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
-                <li><a href="#">Central de Atendimento</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Formas de Pagamento</h4>
-            <div class="payment-icons">
-                <span>[Visa]</span>
-                <span>[MasterCard]</span>
-                <span>[Pix]</span>
-            </div>
-
-            <h4 style="margin-top: 1rem;">Redes Sociais</h4>
-            <div class="social-icons">
-                <span>[Face]</span>
-                <span>[Insta]</span>
-                <span>[X]</span>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row g-4 footer-content">
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Missão</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Políticas</h4>
+                    <ul>
+                        <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Privacidade</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Ajuda</h4>
+                    <ul>
+                        <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ</a></li>
+                        <li><a href="#">Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Pagamento</h4>
+                    <div class="d-flex gap-2 mb-3 opacity-75">
+                        <span>[Visa]</span> <span>[Master]</span> <span>[Pix]</span>
+                    </div>
+                    <h4>Social</h4>
+                    <div class="d-flex gap-2 opacity-75">
+                        <span>[Insta]</span> <span>[Face]</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom text-center py-3">
-        <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
-    </div>
-
-    <div id="privacy-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
-            <h2>Política de Privacidade</h2>
-            <p>Texto completo da política de privacidade...</p>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0">&copy; 2025 Corinthians Cult. Versão Acadêmica.</p>
+            </div>
         </div>
-    </div>
 
-    <div id="refund-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
-            <h2>Política de Reembolso</h2>
-            <p>Texto completo da política de reembolso...</p>
+        <div id="privacy-policy-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
+                <h3>Política de Privacidade</h3>
+                <p>Conteúdo da política...</p>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <div id="cookies-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
-            <h2>Política de Cookies</h2>
-            <p>Texto completo da política de cookies. (RF1.6)</p>
-        </div>
-    </div>
-
-    <div id="terms-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="terms-modal">&times;</span>
-            <h2>Termos de Uso</h2>
-            <p>Texto completo dos termos de uso...</p>
-        </div>
-    </div>
-
-    <div id="faq-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="faq-modal">&times;</span>
-            <h2>FAQ / Ajuda</h2>
-            <p>Perguntas e respostas frequentes...</p>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/api.js"></script>
     <script src="./assets/js/main.js"></script>
 
     <script>
+        // Script Específico da Home (Renderização de Cards)
         document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('featured-events-grid');
 
-            // Helper para renderizar card com classes Bootstrap
             const createEventCard = (event) => {
-                let statusClass = '';
+                // Cores para o badge
                 let badgeClass = 'bg-secondary';
-
-                if (event.status === 'Disponível') {
-                    statusClass = 'disponivel';
-                    badgeClass = 'bg-success';
-                } else if (event.status === 'Esgotado') {
-                    statusClass = 'esgotado';
-                    badgeClass = 'bg-danger';
-                } else if (event.status === 'Em breve') {
-                    statusClass = 'em-breve';
-                    badgeClass = 'bg-primary';
-                }
+                if (event.status === 'Disponível') badgeClass = 'bg-success';
+                else if (event.status === 'Esgotado') badgeClass = 'bg-danger';
+                else if (event.status === 'Em breve') badgeClass = 'bg-primary';
 
                 return `
-                    <div class="col-12 col-md-6 col-lg-4"> 
-                        <article class="card h-100 shadow-sm border-0 event-card">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 event-card">
                             <div class="position-relative">
-                                <a href="./event.html?id=${event.id}" class="event-card-link">
-                                    <div class="ratio ratio-16x9 bg-dark">
-                                        <img src="${event.imagem_capa}" class="card-img-top object-fit-cover" alt="${event.title}">
-                                    </div>
-                                    <span class="position-absolute top-0 end-0 m-2 badge ${badgeClass}">${event.status}</span>
-                                </a>
+                                <img src="${event.imagem_capa}" class="card-img-top" alt="${event.title}">
+                                <span class="position-absolute top-0 end-0 m-2 badge ${badgeClass}">${event.status}</span>
                             </div>
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title text-truncate"><a href="./event.html?id=${event.id}" class="text-decoration-none text-dark">${event.title}</a></h5>
-                                <p class="card-text text-muted small mb-2">
-                                    <i class="bi bi-calendar"></i> ${new Date(event.date).toLocaleDateString('pt-BR')} | ${event.local_nome}
+                                <h5 class="card-title text-truncate">${event.title}</h5>
+                                <p class="card-text text-muted small">
+                                    ${new Date(event.date).toLocaleDateString('pt-BR')} | ${event.local_nome}
                                 </p>
                                 <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
-                                    <div class="lh-1">
-                                        <small class="text-muted d-block">A partir de</small>
-                                        <span class="fw-bold text-primary fs-5">R$ ${event.price_meia.toFixed(2)}</span>
-                                    </div>
-                                    <a href="./event.html?id=${event.id}" class="btn btn-primary btn-sm px-3">Comprar</a>
+                                    <span class="fw-bold text-primary">R$ ${event.price_meia.toFixed(2)}</span>
+                                    <a href="./event.html?id=${event.id}" class="btn btn-primary btn-sm">Comprar</a>
                                 </div>
                             </div>
-                        </article>
+                        </div>
                     </div>
                 `;
             };
 
-            const loadFeaturedEvents = () => {
-                const grid = document.getElementById('featured-events-grid');
-                try {
-                    const events = api.getEvents().slice(0, 3);
-
-                    if (events.length === 0) {
-                        grid.innerHTML = '<div class="col-12"><div class="alert alert-info text-center">Nenhum evento em destaque no momento.</div></div>';
-                        return;
-                    }
-
+            try {
+                const events = api.getEvents().slice(0, 3);
+                if (events.length > 0) {
                     grid.innerHTML = events.map(createEventCard).join('');
-
-                } catch (e) {
-                    grid.innerHTML = '<div class="col-12"><div class="alert alert-danger text-center">Erro ao carregar eventos.</div></div>';
+                } else {
+                    grid.innerHTML = '<div class="col-12 text-center">Nenhum evento encontrado.</div>';
                 }
-            };
-
-            loadFeaturedEvents();
-
-            // Banner de Cookies com Bootstrap
-            if (!localStorage.getItem('cookie_consent')) {
-                const banner = document.createElement('div');
-                banner.className = "fixed-bottom bg-dark text-light p-3 text-center shadow-lg";
-                banner.style.zIndex = "1050";
-                banner.innerHTML = `
-                    <div class="container d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
-                        <span class="small">Usamos cookies (simulados) para melhorar sua experiência. (RF1.6)</span>
-                        <button id="cookie-accept" class="btn btn-primary btn-sm px-4">Aceitar</button>
-                    </div>
-                `;
-                document.body.appendChild(banner);
-
-                document.getElementById('cookie-accept').addEventListener('click', () => {
-                    localStorage.setItem('cookie_consent', 'true');
-                    banner.remove();
-                });
+            } catch (e) {
+                console.error(e);
+                grid.innerHTML = '<div class="col-12 text-danger text-center">Erro ao carregar eventos.</div>';
             }
         });
     </script>

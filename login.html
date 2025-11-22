@@ -11,47 +11,74 @@
 </head>
 
 <body>
-    <header class="main-header" role="banner">
-        <div class="container">
-            <a href="./index.html" class="logo">
-                <img src="./assets/images/corinthians.png" alt="Logo Corinthians Cult">
-            </a>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-corinthians-dark py-3">
+            <div class="container position-relative">
+                <a class="navbar-brand" href="./index.html">
+                    <img src="./assets/images/corinthians.png" alt="Corinthians Cult">
+                </a>
 
-            <div class="header-controls">
-                <div class="location-selector">
-                    <label for="state-select" class="visually-hidden">Estado:</label>
-                    <select id="state-select" name="state" class="form-select form-select-sm d-inline-block w-auto">
-                        <option value="SP">São Paulo</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                    </select>
-                    <label for="city-select" class="visually-hidden">Cidade:</label>
-                    <select id="city-select" name="city" class="form-select form-select-sm d-inline-block w-auto">
-                        <option value="SaoPaulo">São Paulo</option>
-                        <option value="Campinas">Campinas</option>
-                    </select>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader"
+                    aria-controls="mainHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainHeader">
+
+                    <div class="d-none d-lg-block" style="width: 130px;"></div>
+
+                    <form class="d-flex flex-column flex-lg-row align-items-center my-3 my-lg-0 mx-auto w-100"
+                        id="search-form" role="search" style="max-width: 600px;">
+                        <div class="input-group w-100 shadow-sm">
+                            <select class="form-select form-select-sm flex-grow-0 bg-light border-0"
+                                style="width: 70px;" aria-label="Estado" id="state-select">
+                                <option value="SP">SP</option>
+                                <option value="RJ">RJ</option>
+                            </select>
+                            <div style="width: 1px; background: #ccc;"></div>
+                            <select class="form-select form-select-sm flex-grow-0 bg-light border-0"
+                                style="width: 110px;" aria-label="Cidade" id="city-select">
+                                <option value="SaoPaulo">São Paulo</option>
+                                <option value="Campinas">Campinas</option>
+                                <option value="Rio">R. Janeiro</option>
+                            </select>
+                            <input class="form-control border-0" type="search" id="search-input"
+                                placeholder="Buscar eventos..." aria-label="Search">
+
+                            <button class="btn bg-white border-0" type="submit">
+                                <img src="https://api.iconify.design/bi:search.svg?color=%23504375" alt="Buscar"
+                                    style="width: 18px; height: 18px;">
+                            </button>
+                        </div>
+                        <button class="btn btn-secondary w-100 d-lg-none mt-2" type="submit">Buscar</button>
+                    </form>
+
+                    <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center justify-content-lg-end mt-3 mt-lg-0"
+                        id="auth-nav-links" style="min-width: 180px;">
+                        <a href="./login.html" class="btn btn-secondary btn-sm fw-bold px-4 py-2 w-100 w-lg-auto">Login
+                            / Cadastro</a>
+                    </div>
                 </div>
-
-                <form class="search-bar d-flex gap-2" id="search-form" role="search">
-                    <label for="search-input" class="visually-hidden">Buscar eventos</label>
-                    <input type="search" id="search-input" name="q" class="form-control form-control-sm" placeholder="Buscar por título...">
-                    <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
-                </form>
-
-                <nav class="auth-nav" id="auth-nav-links">
-                    <a href="./login.html" class="btn btn-secondary btn-sm" id="auth-login-btn">Login / Cadastro</a>
-                </nav>
             </div>
+        </nav>
 
-            <nav class="main-nav" aria-label="Navegação principal">
-                <ul>
-                    <li><a href="./events.html?category=Todos">Todos</a></li>
-                    <li><a href="./events.html?category=Filmes">Filmes</a></li>
-                    <li><a href="./events.html?category=Shows">Shows</a></li>
-                    <li><a href="./events.html?category=Palestras">Palestras</a></li>
-                    <li><a href="./events.html?category=Peças">Peças</a></li>
-                    <li><a href="./events.html?category=Exposições">Exposições</a></li>
+        <div class="sub-nav">
+            <div class="container">
+                <ul class="nav justify-content-center flex-nowrap overflow-auto pb-1 pb-md-0">
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Todos">Todos</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Filmes">Filmes</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Shows">Shows</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap"
+                            href="./events.html?category=Palestras">Palestras</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Peças">Peças</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap"
+                            href="./events.html?category=Exposições">Exposições</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -63,7 +90,6 @@
                         
                         <form id="login-form">
                             <h1 class="h3 mb-4 text-center fw-bold text-dark">Acessar Conta</h1>
-                            
                             <div class="mb-3">
                                 <label for="login-email" class="form-label">E-mail</label>
                                 <input type="email" id="login-email" class="form-control" required>
@@ -72,11 +98,8 @@
                                 <label for="login-password" class="form-label">Senha</label>
                                 <input type="password" id="login-password" class="form-control" required>
                             </div>
-                            
                             <div class="alert alert-danger py-2 small" id="login-error" style="display: none;"></div>
-                            
                             <button type="submit" class="btn btn-primary w-100 mb-3">Entrar</button>
-                            
                             <div class="auth-toggle text-center small">
                                 <a href="#" id="show-register" class="text-decoration-none">Criar nova conta</a>
                                 <span class="mx-2 text-muted">|</span>
@@ -86,7 +109,6 @@
 
                         <form id="register-form" style="display: none;">
                             <h1 class="h3 mb-4 text-center fw-bold text-dark">Criar Conta</h1>
-                            
                             <div class="mb-3">
                                 <label for="reg-name" class="form-label">Nome Completo</label>
                                 <input type="text" id="reg-name" class="form-control" required>
@@ -104,11 +126,8 @@
                                 <label for="reg-password-confirm" class="form-label">Confirmar Senha</label>
                                 <input type="password" id="reg-password-confirm" class="form-control" required>
                             </div>
-                            
                             <div class="alert alert-danger py-2 small" id="register-error" style="display: none;"></div>
-                            
                             <button type="submit" class="btn btn-primary w-100 mb-3">Cadastrar</button>
-                            
                             <div class="auth-toggle text-center small">
                                 <span class="text-muted">Já tem uma conta?</span>
                                 <a href="#" id="show-login" class="text-decoration-none fw-bold">Entrar</a>
@@ -117,18 +136,14 @@
 
                         <form id="forgot-form" style="display: none;">
                             <h1 class="h3 mb-3 text-center fw-bold text-dark">Recuperar Senha</h1>
-                            <p class="text-muted small text-center mb-4">Digite seu e-mail para receber as instruções de recuperação.</p>
-                            
+                            <p class="text-muted small text-center mb-4">Digite seu e-mail para receber as instruções.</p>
                             <div class="mb-3">
                                 <label for="forgot-email" class="form-label">E-mail</label>
                                 <input type="email" id="forgot-email" class="form-control" required>
                             </div>
-                            
                             <div class="alert alert-danger py-2 small" id="forgot-error" style="display: none;"></div>
                             <div class="alert alert-success py-2 small" id="forgot-success" style="display: none;"></div>
-                            
                             <button type="submit" class="btn btn-primary w-100 mb-3">Enviar Instruções</button>
-                            
                             <div class="auth-toggle text-center small">
                                 <a href="#" id="show-login-from-forgot" class="text-decoration-none">Voltar para o Login</a>
                             </div>
@@ -140,99 +155,60 @@
         </div>
     </main>
 
-    <div class="container footer-content mt-5">
-        <div class="footer-section">
-            <h4>Institucional</h4>
-            <ul>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Missão</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Trabalhe Conosco</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Políticas</h4>
-            <ul>
-                <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Ajuda</h4>
-            <ul>
-                <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
-                <li><a href="#">Central de Atendimento</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Formas de Pagamento</h4>
-            <div class="payment-icons">
-                <span>[Visa]</span>
-                <span>[MasterCard]</span>
-                <span>[Pix]</span>
-            </div>
-
-            <h4 style="margin-top: 1rem;">Redes Sociais</h4>
-            <div class="social-icons">
-                <span>[Face]</span>
-                <span>[Insta]</span>
-                <span>[X]</span>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row g-4 footer-content">
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Missão</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Políticas</h4>
+                    <ul>
+                        <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Ajuda</h4>
+                    <ul>
+                        <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
+                        <li><a href="#">Central de Atendimento</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Pagamento</h4>
+                    <div class="payment-icons mb-3">
+                        <span>[Visa]</span><span>[Master]</span><span>[Pix]</span>
+                    </div>
+                    <h4>Social</h4>
+                    <div class="social-icons">
+                        <span>[Face]</span><span>[Insta]</span><span>[X]</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom text-center py-3">
-        <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
-    </div>
-
-    <div id="privacy-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
-            <h2>Política de Privacidade</h2>
-            <p>Texto completo da política de privacidade...</p>
+        <div class="footer-bottom">
+            <p class="mb-0">&copy; 2025 Corinthians Cult. Versão Acadêmica. Todos os direitos reservados.</p>
         </div>
-    </div>
 
-    <div id="refund-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
-            <h2>Política de Reembolso</h2>
-            <p>Texto completo da política de reembolso...</p>
-        </div>
-    </div>
-
-    <div id="cookies-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
-            <h2>Política de Cookies</h2>
-            <p>Texto completo da política de cookies. (RF1.6)</p>
-        </div>
-    </div>
-
-    <div id="terms-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="terms-modal">&times;</span>
-            <h2>Termos de Uso</h2>
-            <p>Texto completo dos termos de uso...</p>
-        </div>
-    </div>
-
-    <div id="faq-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="faq-modal">&times;</span>
-            <h2>FAQ / Ajuda</h2>
-            <p>Perguntas e respostas frequentes...</p>
-        </div>
-    </div>
+        <div id="privacy-policy-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="privacy-policy-modal">&times;</span><h2>Privacidade</h2><p>Texto da política...</p></div></div>
+        <div id="refund-policy-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="refund-policy-modal">&times;</span><h2>Reembolso</h2><p>Texto do reembolso...</p></div></div>
+        <div id="cookies-policy-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="cookies-policy-modal">&times;</span><h2>Cookies</h2><p>Texto dos cookies...</p></div></div>
+        <div id="terms-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="terms-modal">&times;</span><h2>Termos</h2><p>Texto dos termos...</p></div></div>
+        <div id="faq-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="faq-modal">&times;</span><h2>FAQ</h2><p>Perguntas frequentes...</p></div></div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./assets/js/api.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/auth.js"></script>
 </body>
-
 </html>

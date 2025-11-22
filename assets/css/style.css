@@ -1,317 +1,277 @@
 /* ===================================================================
- * style.css - Folha de Estilos Global (Adaptada para Bootstrap 5)
- * Paleta de Cores (Interface 5), RNF1 (Responsividade), RNF2 (Acessibilidade)
+ * style.css - Estilo Visual (Layout via Bootstrap 5)
  * =================================================================== */
 
-/* --- Configuração Base e Paleta --- */
 :root {
-    --primary-color: #504375; /* Roxo Corinthians */
-    --dark-color: #39324d;    /* Roxo Escuro */
-    --accent-color: #ffe8ef;  /* Bege Claro/Rosado */
-    --light-bg: #f9f9f9;
-    --text-color: #333;
-    --text-light: #f1f1f1;
-    --border-color: #ddd;
-    --success-color: #198754; /* Bootstrap Success ajustado */
-    --error-color: #dc3545;   /* Bootstrap Danger ajustado */
-    
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-/* --- Overrides do Bootstrap (Prioridade) --- */
-
-/* Botão Primário (Roxo) */
-.btn-primary {
-    background-color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background-color: var(--dark-color) !important;
-    border-color: var(--dark-color) !important;
-}
-
-/* Botão Secundário (Accent) */
-.btn-secondary {
-    background-color: var(--accent-color) !important;
-    color: var(--dark-color) !important;
-    border-color: var(--dark-color) !important;
-}
-.btn-secondary:hover {
-    background-color: var(--dark-color) !important;
-    color: var(--accent-color) !important;
-}
-
-/* Links */
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-    color: var(--dark-color);
-}
-
-/* Foco visível para acessibilidade (RNF2) */
-a:focus, button:focus, input:focus, select:focus, .btn:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-    box-shadow: none !important; /* Remove shadow padrão do Bootstrap */
+    --primary-color: #504375; /* Roxo Corinthians (Principal) */
+    --dark-color: #39324d;    /* Roxo Escuro (Fundos/Textos Fortes) */
+    --accent-color: #ffe8ef;  /* Bege/Rosado Claro (Destaques/Secundário) */
+    --light-bg: #f9f9f9;      /* Fundo Geral */
+    --text-color: #333;       /* Texto Padrão */
 }
 
 body {
     background-color: var(--light-bg);
     color: var(--text-color);
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 main {
-    flex: 1 0 auto; /* Garante que o footer vá para baixo (Sticky Footer) */
+    flex: 1 0 auto; /* Sticky Footer */
 }
 
-/* --- Header Personalizado --- */
-.main-header {
-    background-color: var(--dark-color);
-    color: var(--text-light);
-    padding: 1rem 0;
-    border-bottom: 3px solid var(--primary-color);
+/* --- Header & Navbar --- */
+.bg-corinthians-dark {
+    background-color: var(--dark-color) !important;
+    border-bottom: 4px solid var(--primary-color);
 }
 
-.logo {
-    display: inline-block;
-}
-
-.logo img {
+.navbar-brand img {
     height: 50px;
     width: auto;
-    display: block;
 }
 
-/* Navegação Principal */
-.main-nav {
+/* Menu Secundário (Categorias) */
+.sub-nav {
     background-color: var(--primary-color);
-    width: 100%;
-    margin-top: 1rem;
-    border-radius: 4px; /* Toque visual */
+    padding: 0.5rem 0;
 }
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-}
-.main-nav li a {
-    display: block;
-    padding: 0.8rem 1rem;
-    color: var(--text-light);
+.sub-nav .nav-link {
+    color: rgba(255,255,255,0.8) !important;
     font-weight: 500;
-    transition: background-color 0.2s;
+    font-size: 0.95rem;
 }
-.main-nav li a:hover, .main-nav li a.active {
-    background-color: var(--dark-color);
-    text-decoration: none;
-    color: var(--accent-color);
-}
-
-/* Customização dos Selects do Header */
-.location-selector select {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border: 1px solid var(--primary-color);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffe8ef'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center;
-    background-size: 1.2em;
-}
-.location-selector select:focus {
-    border-color: var(--accent-color);
-    background-color: #6a5a9c;
+.sub-nav .nav-link:hover {
+    color: var(--accent-color) !important;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 5px;
 }
 
-/* --- Cards de Evento --- */
+/* --- Cards --- */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
 .event-card {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 .event-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    border-color: var(--primary-color) !important;
 }
-
-.event-card-image {
-    height: 200px;
-    overflow: hidden;
-    background-color: var(--dark-color);
-    position: relative;
+/* Links dentro dos cards */
+.event-card a {
+    text-decoration: none;
+    color: var(--dark-color);
 }
-.event-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Tags de Status */
-.event-status-tag {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.5px;
-}
-.event-status-tag.disponivel { background-color: var(--success-color); }
-.event-status-tag.esgotado { background-color: var(--error-color); }
-.event-status-tag.em-breve { background-color: var(--primary-color); }
-
-.event-price {
+.event-card a:hover {
     color: var(--primary-color);
-    font-weight: bold;
 }
 
 /* --- Footer --- */
-
 .main-footer {
-    background-color: var(--dark-color) !important; /* Força o fundo Roxo Escuro */
-    color: var(--text-light) !important;            /* Força o texto Claro */
-    padding: 3rem 0 1rem;
+    background-color: var(--dark-color) !important;
+    color: #f1f1f1 !important;
     margin-top: auto;
-    border-top: 4px solid var(--primary-color);     /* Borda roxa mais clara no topo */
+    border-top: 4px solid var(--primary-color);
+    padding-top: 3rem;
 }
-
-/* Títulos das seções do footer */
 .footer-section h4 {
-    color: var(--accent-color); /* Rosa claro/Bege */
-    font-weight: bold;
-    margin-bottom: 1.2rem;
-    font-size: 1.2rem;
+    color: var(--accent-color);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
-
-/* Listas */
-.footer-section ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.footer-section li {
-    margin-bottom: 0.6rem;
-}
-
-/* Links do Footer */
-.footer-section li a {
-    color: #e0e0e0; /* Cinza bem claro para leitura fácil */
+.footer-section ul { padding-left: 0; list-style: none; }
+.footer-section li { margin-bottom: 0.5rem; }
+.footer-section a {
+    color: #d1d1d1;
     text-decoration: none;
-    transition: all 0.2s ease;
-    font-size: 0.95rem;
+    transition: color 0.2s, padding-left 0.2s;
 }
-
-.footer-section li a:hover {
-    color: var(--accent-color); /* Muda para a cor de destaque ao passar o mouse */
-    padding-left: 5px;          /* Pequeno movimento para a direita */
+.footer-section a:hover {
+    color: var(--accent-color);
+    padding-left: 5px;
 }
-
-/* Ícones de pagamento e social */
-.payment-icons, .social-icons {
-    display: flex;
-    gap: 1rem;
-    font-style: italic;
-    opacity: 0.9;
-    color: var(--text-light);
-    font-size: 0.9rem;
-}
-
-/* Copyright bar */
 .footer-bottom {
-    background-color: rgba(0, 0, 0, 0.2); /* Um pouco mais escuro que o fundo */
+    background-color: rgba(0,0,0,0.2);
+    padding: 1rem 0;
     margin-top: 2rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
     font-size: 0.85rem;
     opacity: 0.8;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.payment-icons, .social-icons {
+    opacity: 0.8;
+    font-style: italic;
 }
 
-/* Responsividade do Footer */
-@media (max-width: 768px) {
-    .footer-content {
-        text-align: center;
-    }
-    .payment-icons, .social-icons {
-        justify-content: center;
-    }
+/* --- Overrides de Botão e Cores do Bootstrap --- */
+
+/* Botões Primários (Roxo) */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: var(--dark-color) !important;
+    border-color: var(--dark-color) !important;
 }
 
-/* --- Modais (Mantidos para compatibilidade com a lógica customizada) --- */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 2000; /* Maior que o Bootstrap header */
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.6); 
-    backdrop-filter: blur(3px);
+/* Botões Secundários (Rosado Claro - Geral) */
+.btn-secondary {
+    background-color: var(--accent-color) !important;
+    color: var(--dark-color) !important;
+    border-color: var(--dark-color) !important;
+    font-weight: 500;
 }
-.modal-content {
-    background-color: #fff;
-    margin: 5% auto; 
-    padding: 2rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    width: 90%; 
-    max-width: 600px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-    animation: modalFadeIn 0.3s;
+.btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus {
+    background-color: var(--dark-color) !important;
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
 }
-.modal-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s;
+
+/* CORREÇÃO ESPECÍFICA: Botão de Login no Header */
+/* Removemos a borda pesada e ajustamos o hover para ficar branco */
+#auth-nav-links .btn-secondary {
+    background-color: var(--accent-color) !important;
+    color: var(--dark-color) !important;
+    border: 1px solid var(--accent-color) !important; /* Borda da mesma cor do fundo */
+    font-size: 0.9rem; /* Tamanho de fonte um pouco menor */
+    padding: 0.375rem 0.75rem; /* Padding padrão do btn-sm */
 }
-.modal-close:hover {
+#auth-nav-links .btn-secondary:hover {
+    background-color: #fff !important; /* Fica branco ao passar o mouse */
+    border-color: #fff !important;
+    color: var(--primary-color) !important;
+}
+
+/* Ajuste para o botão Sair (Outline Branco) */
+.btn-outline-light {
+    border: 1px solid rgba(255,255,255,0.5) !important;
+    color: #fff !important;
+}
+.btn-outline-light:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+    border-color: #fff !important;
+}
+
+/* Botões de Outline (Usados na Admin - Ex: Editar) */
+.btn-outline-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.btn-outline-primary:hover {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+}
+
+/* --- CORREÇÕES DE ELEMENTOS AZUIS --- */
+
+/* 1. Inputs e Selects (Foco Roxo) */
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(80, 67, 117, 0.25);
+}
+
+/* Ajuste para os selects ficarem com fundo cinza claro no hover */
+.form-select option:checked, 
+.form-select option:hover {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+/* 2. Menus Laterais e Listas (Dashboard/Admin) */
+.list-group-item.active {
+    background-color: var(--primary-color) !important; /* Roxo Principal */
+    border-color: var(--primary-color) !important;
+    color: #fff !important;
+}
+.list-group-item { color: var(--dark-color); }
+.list-group-item-action:hover {
+    background-color: var(--accent-color);
     color: var(--dark-color);
 }
 
-@keyframes modalFadeIn {
-    from {opacity: 0; transform: translateY(-20px);}
-    to {opacity: 1; transform: translateY(0);}
+/* 3. Paginação (Admin Events) */
+.page-link {
+    color: var(--primary-color);
+}
+.page-link:hover {
+    color: var(--dark-color);
+    background-color: var(--accent-color);
+    border-color: var(--primary-color);
+}
+.page-item.active .page-link {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.page-item.disabled .page-link { color: #ccc; }
+
+/* 4. Badges/Status (Tematizados) */
+.badge.bg-success { /* Disponível */
+    background-color: var(--primary-color) !important;
+    color: var(--accent-color) !important;
+}
+.badge.bg-danger { /* Esgotado */
+    background-color: var(--dark-color) !important;
+    color: #fff !important;
+}
+.badge.bg-primary { /* Em breve */
+    background-color: var(--accent-color) !important;
+    color: var(--dark-color) !important;
+    border: 1px solid var(--primary-color);
 }
 
-/* Responsividade Extra */
-@media (max-width: 768px) {
-    .main-header .container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    .header-controls {
-        width: 100%;
-        justify-content: center;
-        flex-direction: column;
-    }
-    .search-bar {
-        width: 100%;
-    }
-    .main-nav ul {
-        flex-direction: column;
-        text-align: center;
-    }
-    .main-nav li a {
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .footer-content {
-        text-align: center;
-    }
-    .payment-icons, .social-icons {
-        justify-content: center;
+/* 5. Alertas (Dashboard - Ex: "Você ainda não realizou compras") */
+.alert-info {
+    background-color: #eadaf5; /* Roxo bem clarinho */
+    border-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+/* Modais (Fundo escurecido) */
+.modal {
+    background-color: rgba(0,0,0,0.5); 
+}
+.modal-content {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#search-form .input-group {
+    border-radius: 6px;
+    overflow: hidden; /* Garante que os cantos fiquem arredondados */
+}
+
+#search-form .form-control:focus, 
+#search-form .form-select:focus {
+    box-shadow: none; /* Remove o brilho externo padrão */
+    background-color: #fff;
+    z-index: 3; /* Traz para frente */
+}
+
+/* Foco geral Roxo para todo o site */
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(80, 67, 117, 0.25);
+}
+
+/* Botão Lupa */
+#search-form button img {
+    transition: transform 0.2s;
+}
+#search-form button:hover img {
+    transform: scale(1.1);
+}
+
+/* --- Adição para Responsividade --- */
+@media (min-width: 992px) {
+    .w-lg-auto {
+        width: auto !important;
     }
 }

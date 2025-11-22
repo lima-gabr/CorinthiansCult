@@ -5,265 +5,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Gerenciar Eventos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
 </head>
 
 <body>
-    <header class="main-header" role="banner">
-        <div class="container">
-            <a href="../index.html" class="logo">
-                <img src="../assets/images/corinthians.png" alt="Logo Corinthians Cult">
-            </a>
+<header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-corinthians-dark py-3">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/images/corinthians.png" alt="Corinthians Cult">
+                </a>
 
-            <div class="header-controls">
-                <div class="location-selector">
-                    <label for="state-select" class="visually-hidden">Estado:</label>
-                    <select id="state-select" name="state" class="form-select form-select-sm d-inline-block w-auto">
-                        <option value="SP">São Paulo</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                    </select>
-                    <label for="city-select" class="visually-hidden">Cidade:</label>
-                    <select id="city-select" name="city" class="form-select form-select-sm d-inline-block w-auto">
-                        <option value="SaoPaulo">São Paulo</option>
-                        <option value="Campinas">Campinas</option>
-                    </select>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse gap-3" id="mainHeader">
+                    <div class="d-none d-lg-block" style="width: 130px;"></div>
+
+                    <form class="d-flex flex-column flex-lg-row align-items-center my-3 my-lg-0 mx-auto w-100" id="search-form" role="search" style="max-width: 600px;">
+                        <div class="input-group w-100 shadow-sm">
+                            <select class="form-select form-select-sm flex-grow-0 bg-light border-0" style="width: 70px;" id="state-select"><option value="SP">SP</option><option value="RJ">RJ</option></select>
+                            <div style="width: 1px; background: #ccc;"></div>
+                            <select class="form-select form-select-sm flex-grow-0 bg-light border-0" style="width: 110px;" id="city-select"><option value="SaoPaulo">São Paulo</option><option value="Campinas">Campinas</option><option value="Rio">R. Janeiro</option></select>
+                            <input class="form-control border-0" type="search" id="search-input" placeholder="Buscar eventos..." aria-label="Search">
+                            <button class="btn bg-white border-0" type="submit"><img src="https://api.iconify.design/bi:search.svg?color=%23504375" alt="Buscar" style="width: 18px; height: 18px;"></button>
+                        </div>
+                        <button class="btn btn-secondary w-100 d-lg-none mt-2" type="submit">Buscar</button>
+                    </form>
+
+                    <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center justify-content-lg-end mt-3 mt-lg-0" id="auth-nav-links" style="min-width: 180px;">
+                        <a href="../login.html" class="btn btn-secondary btn-sm fw-bold px-4 py-2 w-100 w-lg-auto">Login / Cadastro</a>
+                    </div>
                 </div>
-
-                <form class="search-bar d-flex gap-2" id="search-form" role="search">
-                    <label for="search-input" class="visually-hidden">Buscar eventos</label>
-                    <input type="search" id="search-input" name="q" class="form-control form-control-sm" placeholder="Buscar por título...">
-                    <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
-                </form>
-
-                <nav class="auth-nav" id="auth-nav-links">
-                    <a href="../login.html" class="btn btn-secondary btn-sm" id="auth-login-btn">Login / Cadastro</a>
-                </nav>
             </div>
+        </nav>
 
-            <nav class="main-nav" aria-label="Navegação principal">
-                <ul>
-                    <li><a href="../events.html?category=Todos">Todos</a></li>
-                    <li><a href="../events.html?category=Filmes">Filmes</a></li>
-                    <li><a href="../events.html?category=Shows">Shows</a></li>
-                    <li><a href="../events.html?category=Palestras">Palestras</a></li>
-                    <li><a href="../events.html?category=Peças">Peças</a></li>
-                    <li><a href="../events.html?category=Exposições">Exposições</a></li>
+        <div class="sub-nav">
+            <div class="container">
+                <ul class="nav justify-content-center flex-nowrap overflow-auto pb-1 pb-md-0">
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="../events.html?category=Todos">Todos</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="../events.html?category=Filmes">Filmes</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="../events.html?category=Shows">Shows</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="../events.html?category=Palestras">Palestras</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="../events.html?category=Peças">Peças</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="../events.html?category=Exposições">Exposições</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
-    <main>
-        <div class="container dashboard-grid">
-
-            <aside class="dashboard-nav">
-                <ul>
-                    <li><a href="./index.html">Visão Geral</a></li>
-                    <li><a href="./event-form.html" class="active">Cadastrar Evento</a></li>
-                </ul>
-            </aside>
-
-            <section class="dashboard-content">
-                <h1 id="event-form-title" class="mb-4">Cadastrar Novo Evento</h1>
-
-                <form id="event-form" class="bg-white p-4 rounded shadow-sm">
-                    <input type="hidden" id="event-id" name="id">
-
-                    <div class="mb-3">
-                        <label for="titulo" class="form-label">Título do Evento</label>
-                        <input type="text" id="titulo" name="title" class="form-control" required>
+    <main class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="list-group dashboard-nav shadow-sm">
+                        <a href="./index.html" class="list-group-item list-group-item-action">Visão Geral</a>
+                        <a href="./event-form.html" class="list-group-item list-group-item-action active">Cadastrar
+                            Evento</a>
                     </div>
-                    
-                    <div class="mb-3">
-                        <label for="categoria" class="form-label">Categoria</label>
-                        <select id="categoria" name="category" class="form-select" required>
-                            <option value="Filmes">Filmes</option>
-                            <option value="Shows">Shows</option>
-                            <option value="Palestras">Palestras</option>
-                            <option value="Peças">Peças</option>
-                            <option value="Exposições">Exposições</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="descricao" class="form-label">Descrição / Sinopse</label>
-                        <textarea id="descricao" name="description" class="form-control" rows="4" required></textarea>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div class="mb-3">
-                        <label for="local_nome" class="form-label">Nome do Local</label>
-                        <input type="text" id="local_nome" name="local_nome" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="local_endereco" class="form-label">Endereço do Local</label>
-                        <input type="text" id="local_endereco" name="local_endereco" class="form-control" required>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="data" class="form-label">Data</label>
-                            <input type="date" id="data" name="date" class="form-control" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="hora" class="form-label">Horário</label>
-                            <input type="time" id="hora" name="time" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label for="quantidade_total" class="form-label">Qtd. Total Ingressos</label>
-                            <input type="number" id="quantidade_total" name="quantity_total" class="form-control" min="1" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="preco_inteira" class="form-label">Preço Inteira (R$)</label>
-                            <input type="number" id="preco_inteira" name="price_inteira" class="form-control" min="0" step="0.01" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="preco_meia" class="form-label">Preço Meia (R$)</label>
-                            <input type="number" id="preco_meia" name="price_meia" class="form-control" min="0" step="0.01" required>
-                        </div>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label for="idioma" class="form-label">Idioma</label>
-                            <input type="text" id="idioma" name="idioma" class="form-control" value="N/A">
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="classificacao" class="form-label">Classificação Indicativa</label>
-                            <input type="text" id="classificacao" name="classificacao" class="form-control" value="Livre">
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select id="status" name="status" class="form-select" required>
-                                <option value="Disponível">Disponível</option>
-                                <option value="Em breve">Em breve</option>
-                                <option value="Pré-venda">Pré-venda</option>
-                                <option value="Esgotado">Esgotado</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="trailer_url" class="form-label">URL do Trailer (Embed)</label>
-                        <input type="url" id="trailer_url" name="trailer_url" class="form-control" placeholder="https://www.youtube.com/embed/...">
-                    </div>
-                    <div class="mb-3">
-                        <label for="imagem_capa" class="form-label">URL da Imagem de Capa</label>
-                        <input type="url" id="imagem_capa" name="imagem_capa" class="form-control" placeholder="https://via.placeholder.com/400x250" required>
-                    </div>
-
-                    <p class="error-message text-danger" id="form-error"></p>
-                    
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Salvar Evento</button>
-                        <button type="button" id="delete-event-btn" class="btn btn-danger" style="display: none;">Excluir Evento</button>
-                    </div>
-                </form>
-            </section>
-
+                </div>
+                <div class="col-md-9">
+                    <section class="dashboard-content">
+                        <h1 id="event-form-title" class="mb-4 pb-2 border-bottom">Cadastrar Novo Evento</h1>
+                        <form id="event-form" class="bg-white p-4 rounded shadow-sm border">
+                            <input type="hidden" id="event-id" name="id">
+                            <div class="mb-3"><label class="form-label">Título</label><input type="text" id="titulo"
+                                    name="title" class="form-control" required></div>
+                            <div class="mb-3"><label class="form-label">Categoria</label><select id="categoria"
+                                    name="category" class="form-select" required>
+                                    <option value="Filmes">Filmes</option>
+                                    <option value="Shows">Shows</option>
+                                    <option value="Palestras">Palestras</option>
+                                    <option value="Peças">Peças</option>
+                                    <option value="Exposições">Exposições</option>
+                                </select></div>
+                            <div class="mb-3"><label class="form-label">Descrição</label><textarea id="descricao"
+                                    name="description" class="form-control" rows="3" required></textarea></div>
+                            <hr>
+                            <div class="mb-3"><label class="form-label">Local</label><input type="text" id="local_nome"
+                                    name="local_nome" class="form-control" required></div>
+                            <div class="mb-3"><label class="form-label">Endereço</label><input type="text"
+                                    id="local_endereco" name="local_endereco" class="form-control" required></div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3"><label class="form-label">Data</label><input type="date"
+                                        id="data" name="date" class="form-control" required></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">Hora</label><input type="time"
+                                        id="hora" name="time" class="form-control" required></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3"><label class="form-label">Qtd. Total</label><input
+                                        type="number" id="quantidade_total" name="quantity_total" class="form-control"
+                                        min="1" required></div>
+                                <div class="col-md-4 mb-3"><label class="form-label">Preço Inteira</label><input
+                                        type="number" id="preco_inteira" name="price_inteira" class="form-control"
+                                        min="0" step="0.01" required></div>
+                                <div class="col-md-4 mb-3"><label class="form-label">Preço Meia</label><input
+                                        type="number" id="preco_meia" name="price_meia" class="form-control" min="0"
+                                        step="0.01" required></div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-4 mb-3"><label class="form-label">Idioma</label><input type="text"
+                                        id="idioma" name="idioma" class="form-control" value="N/A"></div>
+                                <div class="col-md-4 mb-3"><label class="form-label">Classificação</label><input
+                                        type="text" id="classificacao" name="classificacao" class="form-control"
+                                        value="Livre"></div>
+                                <div class="col-md-4 mb-3"><label class="form-label">Status</label><select id="status"
+                                        name="status" class="form-select">
+                                        <option value="Disponível">Disponível</option>
+                                        <option value="Em breve">Em breve</option>
+                                        <option value="Esgotado">Esgotado</option>
+                                    </select></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Trailer URL</label><input type="url"
+                                    id="trailer_url" name="trailer_url" class="form-control"></div>
+                            <div class="mb-3"><label class="form-label">Imagem Capa URL</label><input type="url"
+                                    id="imagem_capa" name="imagem_capa" class="form-control" required></div>
+                            <p class="text-danger small" id="form-error"></p>
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                <button type="button" id="delete-event-btn" class="btn btn-danger"
+                                    style="display: none;">Excluir</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
         </div>
     </main>
 
-    <div class="container footer-content mt-5">
-        <div class="footer-section">
-            <h4>Institucional</h4>
-            <ul>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Missão</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Trabalhe Conosco</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Políticas</h4>
-            <ul>
-                <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Ajuda</h4>
-            <ul>
-                <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
-                <li><a href="#">Central de Atendimento</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Formas de Pagamento</h4>
-            <div class="payment-icons">
-                <span>[Visa]</span>
-                <span>[MasterCard]</span>
-                <span>[Pix]</span>
-            </div>
-
-            <h4 style="margin-top: 1rem;">Redes Sociais</h4>
-            <div class="social-icons">
-                <span>[Face]</span>
-                <span>[Insta]</span>
-                <span>[X]</span>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row g-4 footer-content">
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Missão</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Políticas</h4>
+                    <ul>
+                        <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Privacidade</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Reembolso</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Ajuda</h4>
+                    <ul>
+                        <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ</a></li>
+                        <li><a href="#">Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Pagamento</h4>
+                    <div class="d-flex gap-2 mb-3 opacity-75"><span>[Visa]</span><span>[Master]</span><span>[Pix]</span>
+                    </div>
+                    <h4>Social</h4>
+                    <div class="d-flex gap-2 opacity-75"><span>[Insta]</span><span>[Face]</span></div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom text-center py-3">
-        <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
-    </div>
-
-    <div id="privacy-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
-            <h2>Política de Privacidade</h2>
-            <p>Texto completo da política de privacidade...</p>
+        <div class="footer-bottom text-center">
+            <p class="mb-0">&copy; 2025 Corinthians Cult.</p>
         </div>
-    </div>
-
-    <div id="refund-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
-            <h2>Política de Reembolso</h2>
-            <p>Texto completo da política de reembolso...</p>
+        <div id="privacy-policy-modal" class="modal">
+            <div class="modal-content"><span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
+                <h3>Privacidade</h3>
+                <p>Texto...</p>
+            </div>
         </div>
-    </div>
-
-    <div id="cookies-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
-            <h2>Política de Cookies</h2>
-            <p>Texto completo da política de cookies. (RF1.6)</p>
+        <div id="refund-policy-modal" class="modal">
+            <div class="modal-content"><span class="modal-close" data-modal="refund-policy-modal">&times;</span>
+                <h3>Reembolso</h3>
+                <p>Texto...</p>
+            </div>
         </div>
-    </div>
-
-    <div id="terms-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="terms-modal">&times;</span>
-            <h2>Termos de Uso</h2>
-            <p>Texto completo dos termos de uso...</p>
+        <div id="terms-modal" class="modal">
+            <div class="modal-content"><span class="modal-close" data-modal="terms-modal">&times;</span>
+                <h3>Termos</h3>
+                <p>Texto...</p>
+            </div>
         </div>
-    </div>
-
-    <div id="faq-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="faq-modal">&times;</span>
-            <h2>FAQ / Ajuda</h2>
-            <p>Perguntas e respostas frequentes...</p>
+        <div id="faq-modal" class="modal">
+            <div class="modal-content"><span class="modal-close" data-modal="faq-modal">&times;</span>
+                <h3>FAQ</h3>
+                <p>Texto...</p>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/api.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/admin.js"></script>

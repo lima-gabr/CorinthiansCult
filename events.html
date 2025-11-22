@@ -11,47 +11,74 @@
 </head>
 
 <body>
-    <header class="main-header" role="banner">
-        <div class="container">
-            <a href="./index.html" class="logo">
-                <img src="./assets/images/corinthians.png" alt="Logo Corinthians Cult">
-            </a>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-corinthians-dark py-3">
+            <div class="container position-relative">
+                <a class="navbar-brand" href="./index.html">
+                    <img src="./assets/images/corinthians.png" alt="Corinthians Cult">
+                </a>
 
-            <div class="header-controls">
-                <div class="location-selector">
-                    <label for="state-select" class="visually-hidden">Estado:</label>
-                    <select id="state-select" name="state" class="form-select form-select-sm d-inline-block w-auto">
-                        <option value="SP">São Paulo</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                    </select>
-                    <label for="city-select" class="visually-hidden">Cidade:</label>
-                    <select id="city-select" name="city" class="form-select form-select-sm d-inline-block w-auto">
-                        <option value="SaoPaulo">São Paulo</option>
-                        <option value="Campinas">Campinas</option>
-                    </select>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader"
+                    aria-controls="mainHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainHeader">
+
+                    <div class="d-none d-lg-block" style="width: 130px;"></div>
+
+                    <form class="d-flex flex-column flex-lg-row align-items-center my-3 my-lg-0 mx-auto w-100"
+                        id="search-form" role="search" style="max-width: 600px;">
+                        <div class="input-group w-100 shadow-sm">
+                            <select class="form-select form-select-sm flex-grow-0 bg-light border-0"
+                                style="width: 70px;" aria-label="Estado" id="state-select">
+                                <option value="SP">SP</option>
+                                <option value="RJ">RJ</option>
+                            </select>
+                            <div style="width: 1px; background: #ccc;"></div>
+                            <select class="form-select form-select-sm flex-grow-0 bg-light border-0"
+                                style="width: 110px;" aria-label="Cidade" id="city-select">
+                                <option value="SaoPaulo">São Paulo</option>
+                                <option value="Campinas">Campinas</option>
+                                <option value="Rio">R. Janeiro</option>
+                            </select>
+                            <input class="form-control border-0" type="search" id="search-input"
+                                placeholder="Buscar eventos..." aria-label="Search">
+
+                            <button class="btn bg-white border-0" type="submit">
+                                <img src="https://api.iconify.design/bi:search.svg?color=%23504375" alt="Buscar"
+                                    style="width: 18px; height: 18px;">
+                            </button>
+                        </div>
+                        <button class="btn btn-secondary w-100 d-lg-none mt-2" type="submit">Buscar</button>
+                    </form>
+
+                    <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center justify-content-lg-end mt-3 mt-lg-0"
+                        id="auth-nav-links" style="min-width: 180px;">
+                        <a href="./login.html" class="btn btn-secondary btn-sm fw-bold px-4 py-2 w-100 w-lg-auto">Login
+                            / Cadastro</a>
+                    </div>
                 </div>
-
-                <form class="search-bar d-flex gap-2" id="search-form" role="search">
-                    <label for="search-input" class="visually-hidden">Buscar eventos</label>
-                    <input type="search" id="search-input" name="q" class="form-control form-control-sm" placeholder="Buscar por título...">
-                    <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
-                </form>
-
-                <nav class="auth-nav" id="auth-nav-links">
-                    <a href="./login.html" class="btn btn-secondary btn-sm" id="auth-login-btn">Login / Cadastro</a>
-                </nav>
             </div>
+        </nav>
 
-            <nav class="main-nav" aria-label="Navegação principal">
-                <ul>
-                    <li><a href="./events.html?category=Todos">Todos</a></li>
-                    <li><a href="./events.html?category=Filmes">Filmes</a></li>
-                    <li><a href="./events.html?category=Shows">Shows</a></li>
-                    <li><a href="./events.html?category=Palestras">Palestras</a></li>
-                    <li><a href="./events.html?category=Peças">Peças</a></li>
-                    <li><a href="./events.html?category=Exposições">Exposições</a></li>
+        <div class="sub-nav">
+            <div class="container">
+                <ul class="nav justify-content-center flex-nowrap overflow-auto pb-1 pb-md-0">
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Todos">Todos</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Filmes">Filmes</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Shows">Shows</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap"
+                            href="./events.html?category=Palestras">Palestras</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap" href="./events.html?category=Peças">Peças</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-nowrap"
+                            href="./events.html?category=Exposições">Exposições</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -102,107 +129,64 @@
 
             <nav aria-label="Paginação" class="mt-5">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <button class="page-link">&laquo; Anterior</button>
-                    </li>
+                    <li class="page-item disabled"><button class="page-link">&laquo; Anterior</button></li>
                     <li class="page-item active"><span class="page-link">1</span></li>
-                    <li class="page-item">
-                        <button class="page-link">Próxima &raquo;</button>
-                    </li>
+                    <li class="page-item"><button class="page-link">Próxima &raquo;</button></li>
                 </ul>
             </nav>
-
         </div>
     </main>
 
-    <div class="container footer-content mt-5">
-        <div class="footer-section">
-            <h4>Institucional</h4>
-            <ul>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Missão</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Trabalhe Conosco</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Políticas</h4>
-            <ul>
-                <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
-                <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Ajuda</h4>
-            <ul>
-                <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
-                <li><a href="#">Central de Atendimento</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Formas de Pagamento</h4>
-            <div class="payment-icons">
-                <span>[Visa]</span>
-                <span>[MasterCard]</span>
-                <span>[Pix]</span>
-            </div>
-
-            <h4 style="margin-top: 1rem;">Redes Sociais</h4>
-            <div class="social-icons">
-                <span>[Face]</span>
-                <span>[Insta]</span>
-                <span>[X]</span>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row g-4 footer-content">
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Missão</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Políticas</h4>
+                    <ul>
+                        <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Política de Privacidade</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Política de Reembolso</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a></li>
+                        <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Ajuda</h4>
+                    <ul>
+                        <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ / Ajuda</a></li>
+                        <li><a href="#">Central de Atendimento</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-section">
+                    <h4>Pagamento</h4>
+                    <div class="payment-icons mb-3">
+                        <span>[Visa]</span><span>[Master]</span><span>[Pix]</span>
+                    </div>
+                    <h4>Social</h4>
+                    <div class="social-icons">
+                        <span>[Face]</span><span>[Insta]</span><span>[X]</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom text-center py-3">
-        <p>&copy; 2025 Corinthians Cult / Culthians Club (Versão Acadêmica). Todos os direitos reservados.</p>
-    </div>
-
-    <div id="privacy-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
-            <h2>Política de Privacidade</h2>
-            <p>Texto completo da política de privacidade...</p>
+        <div class="footer-bottom">
+            <p class="mb-0">&copy; 2025 Corinthians Cult. Versão Acadêmica. Todos os direitos reservados.</p>
         </div>
-    </div>
 
-    <div id="refund-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="refund-policy-modal">&times;</span>
-            <h2>Política de Reembolso</h2>
-            <p>Texto completo da política de reembolso...</p>
-        </div>
-    </div>
-
-    <div id="cookies-policy-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="cookies-policy-modal">&times;</span>
-            <h2>Política de Cookies</h2>
-            <p>Texto completo da política de cookies. (RF1.6)</p>
-        </div>
-    </div>
-
-    <div id="terms-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="terms-modal">&times;</span>
-            <h2>Termos de Uso</h2>
-            <p>Texto completo dos termos de uso...</p>
-        </div>
-    </div>
-
-    <div id="faq-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" data-modal="faq-modal">&times;</span>
-            <h2>FAQ / Ajuda</h2>
-            <p>Perguntas e respostas frequentes...</p>
-        </div>
-    </div>
+        <div id="privacy-policy-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="privacy-policy-modal">&times;</span><h2>Privacidade</h2><p>Texto da política...</p></div></div>
+        <div id="refund-policy-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="refund-policy-modal">&times;</span><h2>Reembolso</h2><p>Texto do reembolso...</p></div></div>
+        <div id="cookies-policy-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="cookies-policy-modal">&times;</span><h2>Cookies</h2><p>Texto dos cookies...</p></div></div>
+        <div id="terms-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="terms-modal">&times;</span><h2>Termos</h2><p>Texto dos termos...</p></div></div>
+        <div id="faq-modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal="faq-modal">&times;</span><h2>FAQ</h2><p>Perguntas frequentes...</p></div></div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./assets/js/api.js"></script>
@@ -214,10 +198,17 @@
             const filterForm = document.getElementById('filters-form');
             const urlParams = new URLSearchParams(window.location.search);
 
-            // Helper para renderizar card
+            // 1. Aplica filtros da URL no formulário
+            if (urlParams.get('category')) {
+                document.getElementById('filter-category').value = urlParams.get('category');
+            }
+            if (urlParams.get('search')) {
+                document.getElementById('search-input').value = urlParams.get('search'); // Atualiza a busca visualmente também
+            }
+
             const createEventCard = (event) => {
                 let statusClass = '';
-                let badgeClass = 'bg-secondary'; // Default Bootstrap badge color
+                let badgeClass = 'bg-secondary';
 
                 if (event.status === 'Disponível') {
                     statusClass = 'disponivel';
@@ -230,12 +221,11 @@
                     badgeClass = 'bg-primary';
                 }
 
-                // Estrutura de Card do Bootstrap
                 return `
                     <div class="col-12 col-md-6 col-lg-4"> 
                         <article class="card h-100 shadow-sm border-0 event-card">
                             <div class="position-relative">
-                                <a href="./event.html?id=${event.id}" class="event-card-link">
+                                <a href="./event.html?id=${event.id}" class="event-card-link text-decoration-none">
                                     <div class="ratio ratio-16x9 bg-dark">
                                         <img src="${event.imagem_capa}" class="card-img-top object-fit-cover" alt="${event.title}">
                                     </div>
@@ -260,37 +250,23 @@
                 `;
             };
 
-            // Função principal de renderização (RF4)
             const renderEvents = () => {
                 const formData = new FormData(filterForm);
                 const filters = {
-                    search: urlParams.get('search') || '',
-                    category: formData.get('category') || urlParams.get('category') || 'Todos',
+                    search: urlParams.get('search') || '', // Prioriza a busca da URL se houver
+                    category: formData.get('category') || 'Todos',
                     location: formData.get('location') || '',
                     sortBy: formData.get('sortBy') || 'popularity'
                 };
 
-                if (urlParams.get('search')) {
-                    document.getElementById('search-input').value = urlParams.get('search');
+                const events = api.getEvents(filters);
+
+                if (events.length === 0) {
+                    grid.innerHTML = '<div class="col-12"><div class="alert alert-info text-center">Nenhum evento encontrado com esses filtros.</div></div>';
+                    return;
                 }
-                if (urlParams.get('category')) {
-                    document.getElementById('filter-category').value = urlParams.get('category');
-                }
 
-                try {
-                    const events = api.getEvents(filters);
-
-                    if (events.length === 0) {
-                        grid.innerHTML = '<div class="col-12"><div class="alert alert-info text-center">Nenhum evento encontrado com esses filtros.</div></div>';
-                        return;
-                    }
-
-                    grid.innerHTML = events.map(createEventCard).join('');
-
-                } catch (e) {
-                    grid.innerHTML = '<div class="col-12"><div class="alert alert-danger">Erro ao carregar eventos.</div></div>';
-                    console.error(e);
-                }
+                grid.innerHTML = events.map(createEventCard).join('');
             };
 
             filterForm.addEventListener('submit', (e) => {

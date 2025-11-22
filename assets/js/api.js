@@ -31,7 +31,7 @@ const ApiService = () => {
                     price_inteira: 200, price_meia: 100,
                     idioma: 'N/A', classificacao: '16 anos',
                     trailer_url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                    imagem_capa: 'https://via.placeholder.com/400x250.png?text=Show+de+Rock',
+                    imagem_capa: 'https://placehold.co/600x400/504375/FFF?text=Show+de+Rock',
                     status: 'Disponível' // RF1.2
                 },
                 {
@@ -43,7 +43,7 @@ const ApiService = () => {
                     price_inteira: 50, price_meia: 25,
                     idioma: 'Português', classificacao: 'Livre',
                     trailer_url: '',
-                    imagem_capa: 'https://via.placeholder.com/400x250.png?text=Palestra+IA',
+                    imagem_capa: 'https://placehold.co/600x400/39324d/FFF?text=Palestra+IA',
                     status: 'Esgotado' // RF3.2
                 },
                 {
@@ -55,7 +55,7 @@ const ApiService = () => {
                     price_inteira: 60, price_meia: 30,
                     idioma: 'Dublado/Legendado', classificacao: '12 anos',
                     trailer_url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                    imagem_capa: 'https://via.placeholder.com/400x250.png?text=Filme+Aventura',
+                    imagem_capa: 'https://placehold.co/600x400/1a1a1a/FFF?text=Filme+Espacial',
                     status: 'Em breve' // RF1.2, RF3.3
                 }
             ]);
