@@ -1,3 +1,9 @@
+<!--
+	README: Corinthians Cult
+	Breve: repositório de exemplo para venda de ingressos — versão acadêmica.
+	Observação: a aplicação é estática com um backend simulado em `assets/js/api.js` usando localStorage.
+-->
+
 Projeto de Programação Web - Centro Universitário SENAC.
 
 Plataforma de Venda de Ingressos (Corinthians Cult) — Versão Acadêmica

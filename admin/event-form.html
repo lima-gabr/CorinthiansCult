@@ -2,6 +2,11 @@
 <html lang="pt-br">
 
 <head>
+    <!--
+        Página: Admin - Formulário de Evento (admin/event-form.html)
+        Descrição: Formulário para criar/editar eventos. Modo de edição detectado por `?id=` na URL.
+        Observações: Envia dados para as funções simuladas em `../assets/js/api.js`.
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Gerenciar Eventos</title>
@@ -138,67 +143,8 @@
     </main>
 
     <footer class="main-footer">
-        <div class="container">
-            <div class="row g-4 footer-content">
-                <div class="col-md-3 col-sm-6 footer-section">
-                    <h4>Institucional</h4>
-                    <ul>
-                        <li><a href="#">Sobre Nós</a></li>
-                        <li><a href="#">Missão</a></li>
-                        <li><a href="#">Contato</a></li>
-                        <li><a href="#">Trabalhe Conosco</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 col-sm-6 footer-section">
-                    <h4>Políticas</h4>
-                    <ul>
-                        <li><a href="#" class="modal-trigger" data-modal="privacy-policy-modal">Privacidade</a></li>
-                        <li><a href="#" class="modal-trigger" data-modal="refund-policy-modal">Reembolso</a></li>
-                        <li><a href="#" class="modal-trigger" data-modal="terms-modal">Termos de Uso</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 col-sm-6 footer-section">
-                    <h4>Ajuda</h4>
-                    <ul>
-                        <li><a href="#" class="modal-trigger" data-modal="faq-modal">FAQ</a></li>
-                        <li><a href="#">Suporte</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 col-sm-6 footer-section">
-                    <h4>Pagamento</h4>
-                    <div class="d-flex gap-2 mb-3 opacity-75"><span>[Visa]</span><span>[Master]</span><span>[Pix]</span>
-                    </div>
-                    <h4>Social</h4>
-                    <div class="d-flex gap-2 opacity-75"><span>[Insta]</span><span>[Face]</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            <p class="mb-0">&copy; 2025 Corinthians Cult.</p>
-        </div>
-        <div id="privacy-policy-modal" class="modal">
-            <div class="modal-content"><span class="modal-close" data-modal="privacy-policy-modal">&times;</span>
-                <h3>Privacidade</h3>
-                <p>Texto...</p>
-            </div>
-        </div>
-        <div id="refund-policy-modal" class="modal">
-            <div class="modal-content"><span class="modal-close" data-modal="refund-policy-modal">&times;</span>
-                <h3>Reembolso</h3>
-                <p>Texto...</p>
-            </div>
-        </div>
-        <div id="terms-modal" class="modal">
-            <div class="modal-content"><span class="modal-close" data-modal="terms-modal">&times;</span>
-                <h3>Termos</h3>
-                <p>Texto...</p>
-            </div>
-        </div>
-        <div id="faq-modal" class="modal">
-            <div class="modal-content"><span class="modal-close" data-modal="faq-modal">&times;</span>
-                <h3>FAQ</h3>
-                <p>Texto...</p>
-            </div>
+        <div class="container text-center py-3">
+            <p>&copy; 2025 Corinthians Cult.</p>
         </div>
     </footer>
 

@@ -1,13 +1,15 @@
-/* ===================================================================
- * style.css - Estilo Visual (Layout via Bootstrap 5)
- * =================================================================== */
-
+/*
+    style.css - Tema e ajustes visuais do site Corinthians Cult
+    - Define variáveis CSS (cores, fundos, textos)
+    - Contém pequenas customizações do Bootstrap para ajustes visuais
+    Observação: mantive a organização por blocos (Header, Cards, Footer, Buttons, Forms).
+*/
 :root {
-    --primary-color: #504375; /* Roxo Corinthians (Principal) */
-    --dark-color: #39324d;    /* Roxo Escuro (Fundos/Textos Fortes) */
-    --accent-color: #ffe8ef;  /* Bege/Rosado Claro (Destaques/Secundário) */
-    --light-bg: #f9f9f9;      /* Fundo Geral */
-    --text-color: #333;       /* Texto Padrão */
+    --primary-color: #504375;
+    --dark-color: #39324d;
+    --accent-color: #ffe8ef;
+    --light-bg: #f9f9f9;
+    --text-color: #333;
 }
 
 body {
@@ -20,10 +22,9 @@ body {
 }
 
 main {
-    flex: 1 0 auto; /* Sticky Footer */
+    flex: 1 0 auto;
 }
 
-/* --- Header & Navbar --- */
 .bg-corinthians-dark {
     background-color: var(--dark-color) !important;
     border-bottom: 4px solid var(--primary-color);
@@ -34,7 +35,6 @@ main {
     width: auto;
 }
 
-/* Menu Secundário (Categorias) */
 .sub-nav {
     background-color: var(--primary-color);
     padding: 0.5rem 0;
@@ -50,7 +50,6 @@ main {
     border-radius: 5px;
 }
 
-/* --- Cards --- */
 .card-img-top {
     height: 200px;
     object-fit: cover;
@@ -63,7 +62,6 @@ main {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
     border-color: var(--primary-color) !important;
 }
-/* Links dentro dos cards */
 .event-card a {
     text-decoration: none;
     color: var(--dark-color);
@@ -72,7 +70,6 @@ main {
     color: var(--primary-color);
 }
 
-/* --- Footer --- */
 .main-footer {
     background-color: var(--dark-color) !important;
     color: #f1f1f1 !important;
@@ -111,9 +108,73 @@ main {
     font-style: italic;
 }
 
-/* --- Overrides de Botão e Cores do Bootstrap --- */
+.modal-content {
+    background-color: #fff !important;       
+    color: #333 !important;                  
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);  
+    margin: 5% auto; 
+    width: 90%;
+    max-width: 600px; 
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+}
 
-/* Botões Primários (Roxo) */
+.modal-content h2, 
+.modal-content h3 {
+    color: var(--primary-color) !important;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.modal-close {
+    color: #999 !important; 
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--error-color) !important; 
+}
+
+.modal-content a {
+    color: var(--primary-color) !important;
+}
+
+
+
+.icon-box {
+    background-color: #ffffff !important; 
+    width: 55px;        
+    height: 40px;       
+    border-radius: 6px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+    transition: transform 0.2s;
+}
+
+.icon-box:hover {
+    transform: translateY(-2px); 
+}
+
+.icon-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; 
+    display: block;
+}
+
+
 .btn-primary {
     background-color: var(--primary-color) !important;
     border-color: var(--primary-color) !important;
@@ -123,7 +184,6 @@ main {
     border-color: var(--dark-color) !important;
 }
 
-/* Botões Secundários (Rosado Claro - Geral) */
 .btn-secondary {
     background-color: var(--accent-color) !important;
     color: var(--dark-color) !important;
@@ -136,22 +196,19 @@ main {
     border-color: var(--accent-color) !important;
 }
 
-/* CORREÇÃO ESPECÍFICA: Botão de Login no Header */
-/* Removemos a borda pesada e ajustamos o hover para ficar branco */
 #auth-nav-links .btn-secondary {
     background-color: var(--accent-color) !important;
     color: var(--dark-color) !important;
-    border: 1px solid var(--accent-color) !important; /* Borda da mesma cor do fundo */
-    font-size: 0.9rem; /* Tamanho de fonte um pouco menor */
-    padding: 0.375rem 0.75rem; /* Padding padrão do btn-sm */
+    border: 1px solid var(--accent-color) !important; 
+    font-size: 0.9rem; 
+    padding: 0.375rem 0.75rem; 
 }
 #auth-nav-links .btn-secondary:hover {
-    background-color: #fff !important; /* Fica branco ao passar o mouse */
+    background-color: #fff !important; 
     border-color: #fff !important;
     color: var(--primary-color) !important;
 }
 
-/* Ajuste para o botão Sair (Outline Branco) */
 .btn-outline-light {
     border: 1px solid rgba(255,255,255,0.5) !important;
     color: #fff !important;
@@ -161,7 +218,6 @@ main {
     border-color: #fff !important;
 }
 
-/* Botões de Outline (Usados na Admin - Ex: Editar) */
 .btn-outline-primary {
     color: var(--primary-color) !important;
     border-color: var(--primary-color) !important;
@@ -171,24 +227,20 @@ main {
     color: #fff !important;
 }
 
-/* --- CORREÇÕES DE ELEMENTOS AZUIS --- */
 
-/* 1. Inputs e Selects (Foco Roxo) */
 .form-control:focus, .form-select:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.25rem rgba(80, 67, 117, 0.25);
 }
 
-/* Ajuste para os selects ficarem com fundo cinza claro no hover */
 .form-select option:checked, 
 .form-select option:hover {
     background-color: var(--primary-color) !important;
     color: white !important;
 }
 
-/* 2. Menus Laterais e Listas (Dashboard/Admin) */
 .list-group-item.active {
-    background-color: var(--primary-color) !important; /* Roxo Principal */
+    background-color: var(--primary-color) !important;
     border-color: var(--primary-color) !important;
     color: #fff !important;
 }
@@ -198,7 +250,6 @@ main {
     color: var(--dark-color);
 }
 
-/* 3. Paginação (Admin Events) */
 .page-link {
     color: var(--primary-color);
 }
@@ -213,29 +264,26 @@ main {
 }
 .page-item.disabled .page-link { color: #ccc; }
 
-/* 4. Badges/Status (Tematizados) */
-.badge.bg-success { /* Disponível */
+.badge.bg-success {
     background-color: var(--primary-color) !important;
     color: var(--accent-color) !important;
 }
-.badge.bg-danger { /* Esgotado */
+.badge.bg-danger {
     background-color: var(--dark-color) !important;
     color: #fff !important;
 }
-.badge.bg-primary { /* Em breve */
+.badge.bg-primary {
     background-color: var(--accent-color) !important;
     color: var(--dark-color) !important;
     border: 1px solid var(--primary-color);
 }
 
-/* 5. Alertas (Dashboard - Ex: "Você ainda não realizou compras") */
 .alert-info {
-    background-color: #eadaf5; /* Roxo bem clarinho */
+    background-color: #eadaf5;
     border-color: var(--primary-color);
     color: var(--dark-color);
 }
 
-/* Modais (Fundo escurecido) */
 .modal {
     background-color: rgba(0,0,0,0.5); 
 }
@@ -245,23 +293,21 @@ main {
 
 #search-form .input-group {
     border-radius: 6px;
-    overflow: hidden; /* Garante que os cantos fiquem arredondados */
+    overflow: hidden;
 }
 
 #search-form .form-control:focus, 
 #search-form .form-select:focus {
-    box-shadow: none; /* Remove o brilho externo padrão */
+    box-shadow: none;
     background-color: #fff;
-    z-index: 3; /* Traz para frente */
+    z-index: 3;
 }
 
-/* Foco geral Roxo para todo o site */
 .form-control:focus, .form-select:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.2rem rgba(80, 67, 117, 0.25);
 }
 
-/* Botão Lupa */
 #search-form button img {
     transition: transform 0.2s;
 }
@@ -275,7 +321,7 @@ main {
 .btn-primary {
     background-color: var(--primary-color) !important;
     border-color: var(--primary-color) !important;
-    color: #fff !important; /* Força texto branco */
+    color: #fff !important;
 }
 
 .btn-primary:hover, 
@@ -292,7 +338,7 @@ main {
     font-weight: 600;
 }
 
-/* --- Adição para Responsividade --- */
+
 @media (min-width: 992px) {
     .w-lg-auto {
         width: auto !important;
