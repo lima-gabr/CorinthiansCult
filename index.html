@@ -124,7 +124,7 @@
                     <ul class="list-unstyled">
                         <li><a href="#" onclick="alert('Página Institucional em construção!')">Sobre Nós</a></li>
                         <li><a href="#" onclick="alert('Nossa missão é espalhar a cultura!')">Missão e Valores</a></li>
-                        <li><a href="#" onclick="alert('Entre em contato: sac@cult.com')">Imprensa</a></li>
+                        <li><a href="#" onclick="alert('Entre em contato: sac@corinthianscult.com')">Imprensa</a></li>
                         <li><a href="#" onclick="alert('Envie seu currículo!')">Trabalhe Conosco</a></li>
                     </ul>
                 </div>
@@ -288,6 +288,24 @@
             } catch (e) {
                 console.error(e);
                 grid.innerHTML = '<div class="col-12 text-danger text-center">Erro ao carregar eventos.</div>';
+            }
+
+            // Recomendações personalizadas (filtragem por conteúdo)
+            const recommendedGrid = document.getElementById('recommended-events-grid');
+            try {
+                const user = api.getCurrentUser();
+                if (user) {
+                    const recs = api.getRecommendationsForUser(user.id, 3);
+                    if (recs && recs.length > 0) {
+                        recommendedGrid.innerHTML = recs.map(createEventCard).join('');
+                    } else {
+                        recommendedGrid.innerHTML = '<div class="col-12"><div class="alert alert-light border text-center text-muted">Sem recomendações no momento.</div></div>';
+                    }
+                }
+                // Se não estiver logado, mantemos a mensagem padrão (faça login)
+            } catch (err) {
+                console.error(err);
+                recommendedGrid.innerHTML = '<div class="col-12 text-danger text-center">Erro ao carregar recomendações.</div>';
             }
         });
     </script>

@@ -312,6 +312,32 @@ const ApiService = () => {
         }));
     };
 
+    // --- Recomendações (Filtragem por Conteúdo) ---
+    // Retorna até `limit` eventos na mesma categoria do último evento comprado
+    // pelo usuário, excluindo eventos que o usuário já comprou.
+    const getRecommendationsForUser = (userId, limit = 3) => {
+        if (!userId) return [];
+
+        const history = getPurchaseHistory(userId); // mais recentes primeiro
+        if (!history || history.length === 0) return [];
+
+        // Categoria do último evento comprado
+        const lastPurchase = history[0];
+        const lastEvent = getEventById(lastPurchase.eventId);
+        if (!lastEvent || !lastEvent.category) return [];
+        const targetCategory = lastEvent.category;
+
+        // IDs comprados pelo usuário
+        const purchasedIds = new Set(history.map(h => h.eventId));
+
+        // Filtra eventos por categoria e não comprados ainda
+        const candidates = getEvents().filter(e =>
+            e.category === targetCategory && !purchasedIds.has(e.id) && e.status !== 'Esgotado'
+        );
+
+        return candidates.slice(0, limit);
+    };
+
     // --- Inicialização ---
     _initDB();
     
@@ -331,7 +357,9 @@ const ApiService = () => {
         getPurchaseHistory,
         cancelPurchase,
         requestNotification,
-        getAdminReport
+        getAdminReport,
+        // Recomendações
+        getRecommendationsForUser
     };
 };
 
