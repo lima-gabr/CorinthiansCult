@@ -51,6 +51,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // --- Banner de Cookies (mostra uma vez na primeira visita) ---
+    const initCookieBanner = () => {
+        // Se já aceitou, não mostra
+        if (localStorage.getItem('cookie_consent')) return;
+
+        const banner = document.createElement('div');
+        banner.id = 'cookie-banner';
+        banner.className = 'fixed-bottom bg-corinthians-dark text-white p-3 shadow-lg border-top border-primary';
+        banner.style.zIndex = '10000';
+
+        banner.innerHTML = `
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <div class="text-center text-md-start">
+                    <p class="mb-0 small">
+                        Nós utilizamos cookies para melhorar sua experiência no <strong>Corinthians Cult</strong>.
+                        Leia nossa <a href="#" class="text-warning text-decoration-none modal-trigger" data-modal="cookies-policy-modal">Política de Cookies</a>.
+                    </p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button id="cookie-accept" class="btn btn-primary btn-sm fw-bold px-4">Aceitar</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(banner);
+
+        document.getElementById('cookie-accept').addEventListener('click', () => {
+            localStorage.setItem('cookie_consent', 'true');
+            banner.remove();
+        });
+    };
+
     // --- Proteção de Rotas ---
     const protectRoute = () => {
         const user = api.getCurrentUser();
@@ -121,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // --- Inicialização ---
+    initCookieBanner();
     protectRoute();
     initHeaderControls();
     initModalTriggers();
