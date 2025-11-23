@@ -118,9 +118,23 @@
                                 <label for="reg-name" class="form-label">Nome Completo</label>
                                 <input type="text" id="reg-name" class="form-control" required>
                             </div>
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-6">
+                                    <label for="reg-email" class="form-label">E-mail</label>
+                                    <input type="email" id="reg-email" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="reg-cep" class="form-label">CEP</label>
+                                    <div class="input-group">
+                                        <input type="text" id="reg-cep" class="form-control" placeholder="XXXXX-XXX">
+                                        <button type="button" id="reg-cep-lookup" class="btn btn-outline-secondary">Buscar</button>
+                                    </div>
+                                    <div class="small text-danger mt-1" id="reg-cep-error" style="display:none;"></div>
+                                </div>
+                            </div>
                             <div class="mb-3">
-                                <label for="reg-email" class="form-label">E-mail</label>
-                                <input type="email" id="reg-email" class="form-control" required>
+                                <label for="reg-address" class="form-label">Endereço (auto preenchido)</label>
+                                <input type="text" id="reg-address" class="form-control" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="reg-password" class="form-label">Senha</label>

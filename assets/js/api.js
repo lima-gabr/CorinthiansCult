@@ -70,14 +70,14 @@ const ApiService = () => {
         
         if (user) {
             // Simula sessão (RNF5)
-            const sessionData = { id: user.id, name: user.name, email: user.email, role: user.role };
+            const sessionData = { id: user.id, name: user.name, email: user.email, role: user.role, cep: user.cep || '' };
             localStorage.setItem('currentUser', JSON.stringify(sessionData));
             return { success: true, user: sessionData };
         }
         return { success: false, message: 'E-mail ou senha inválidos.' };
     };
     
-    const register = (name, email, password) => {
+    const register = (name, email, password, cep = '') => {
         const users = _get('db_users');
         if (users.some(u => u.email === email)) {
             return { success: false, message: 'Este e-mail já está cadastrado.' };
@@ -86,7 +86,8 @@ const ApiService = () => {
         const newUser = {
             id: _generateId(),
             name, email, password,
-            role: 'customer' // Padrão
+            role: 'customer', // Padrão
+            cep: cep || ''
         };
         
         users.push(newUser);

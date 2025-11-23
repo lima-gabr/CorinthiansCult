@@ -127,6 +127,8 @@ function initEventForm() {
             document.getElementById('trailer_url').value = event.trailer_url || '';
             document.getElementById('imagem_capa').value = event.imagem_capa;
             document.getElementById('status').value = event.status;
+            // Preenche CEP se disponível
+            if (document.getElementById('cep')) document.getElementById('cep').value = event.cep || '';
         } else {
             alert('Evento não encontrado!');
             // CORRIGIDO: Caminho relativo
@@ -196,4 +198,44 @@ function initEventForm() {
             }
         });
     }
+
+    // --- CEP Lookup (ViaCEP) ---
+    const cepInput = document.getElementById('cep');
+    const cepBtn = document.getElementById('cep-lookup-btn');
+    const cepError = document.getElementById('cep-error');
+
+    const lookupCep = async () => {
+        if (!cepInput) return;
+        cepError.style.display = 'none';
+        let cep = (cepInput.value || '').replace(/\D/g, '');
+        if (!cep || cep.length !== 8) {
+            cepError.textContent = 'CEP inválido (use 8 dígitos).';
+            cepError.style.display = 'block';
+            return;
+        }
+
+        try {
+            cepBtn.disabled = true;
+            cepBtn.textContent = 'Buscando...';
+            const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const data = await res.json();
+            if (data.erro) {
+                cepError.textContent = 'CEP não encontrado.';
+                cepError.style.display = 'block';
+            } else {
+                const address = `${data.logradouro || ''}${data.bairro ? ', ' + data.bairro : ''} - ${data.localidade || ''}/${data.uf || ''}`;
+                const addrEl = document.getElementById('local_endereco');
+                if (addrEl) addrEl.value = address;
+            }
+        } catch (err) {
+            cepError.textContent = 'Erro ao buscar CEP.';
+            cepError.style.display = 'block';
+        } finally {
+            cepBtn.disabled = false;
+            cepBtn.textContent = 'Buscar';
+        }
+    };
+
+    if (cepBtn) cepBtn.addEventListener('click', lookupCep);
+    if (cepInput) cepInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); lookupCep(); } });
 }

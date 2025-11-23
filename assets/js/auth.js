@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('reg-email').value;
         const password = document.getElementById('reg-password').value;
         const passwordConfirm = document.getElementById('reg-password-confirm').value;
+        const cep = (document.getElementById('reg-cep') && document.getElementById('reg-cep').value) || '';
         
         // Validação
         if (password !== passwordConfirm) {
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
              return;
         }
         
-        const result = api.register(name, email, password);
+        const result = api.register(name, email, password, cep);
         
         if (result.success) {
             alert('Cadastro realizado com sucesso! Você já está logado.');
@@ -150,5 +151,44 @@ document.addEventListener('DOMContentLoaded', () => {
         
         forgotForm.reset();
     });
+    // --- CEP Lookup (ViaCEP) for Registration Form ---
+    const regCepInput = document.getElementById('reg-cep');
+    const regCepBtn = document.getElementById('reg-cep-lookup');
+    const regCepError = document.getElementById('reg-cep-error');
+    const regAddressEl = document.getElementById('reg-address');
+
+    const lookupRegCep = async () => {
+        if (!regCepInput) return;
+        regCepError.style.display = 'none';
+        regAddressEl.value = '';
+        let cepVal = (regCepInput.value || '').replace(/\D/g, '');
+        if (!cepVal || cepVal.length !== 8) {
+            regCepError.textContent = 'CEP inválido (use 8 dígitos).';
+            regCepError.style.display = 'block';
+            return;
+        }
+
+        try {
+            regCepBtn.disabled = true;
+            regCepBtn.textContent = 'Buscando...';
+            const res = await fetch(`https://viacep.com.br/ws/${cepVal}/json/`);
+            const data = await res.json();
+            if (data.erro) {
+                regCepError.textContent = 'CEP não encontrado.';
+                regCepError.style.display = 'block';
+            } else {
+                regAddressEl.value = `${data.logradouro || ''}${data.bairro ? ', ' + data.bairro : ''} - ${data.localidade || ''}/${data.uf || ''}`;
+            }
+        } catch (err) {
+            regCepError.textContent = 'Erro ao buscar CEP.';
+            regCepError.style.display = 'block';
+        } finally {
+            regCepBtn.disabled = false;
+            regCepBtn.textContent = 'Buscar';
+        }
+    };
+
+    if (regCepBtn) regCepBtn.addEventListener('click', lookupRegCep);
+    if (regCepInput) regCepInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); lookupRegCep(); } });
     
 });

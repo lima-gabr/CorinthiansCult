@@ -92,8 +92,20 @@
                             <hr>
                             <div class="mb-3"><label class="form-label">Local</label><input type="text" id="local_nome"
                                     name="local_nome" class="form-control" required></div>
-                            <div class="mb-3"><label class="form-label">Endereço</label><input type="text"
-                                    id="local_endereco" name="local_endereco" class="form-control" required></div>
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">CEP</label>
+                                    <div class="input-group">
+                                        <input type="text" id="cep" name="cep" class="form-control" placeholder="XXXXX-XXX">
+                                        <button type="button" id="cep-lookup-btn" class="btn btn-outline-secondary">Buscar</button>
+                                    </div>
+                                    <div class="small text-danger mt-1" id="cep-error" style="display:none;"></div>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="form-label">Endereço</label>
+                                    <input type="text" id="local_endereco" name="local_endereco" class="form-control" required>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3"><label class="form-label">Data</label><input type="date"
                                         id="data" name="date" class="form-control" required></div>
